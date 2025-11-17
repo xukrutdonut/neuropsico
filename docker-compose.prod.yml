@@ -1,0 +1,39 @@
+version: '3.8'
+
+# Configuración para producción (sin volúmenes de desarrollo)
+services:
+  neuropsico-app:
+    build: .
+    container_name: ${CONTAINER_NAME:-neuropsico-web}
+    ports:
+      - "${APP_PORT:-8090}:80"
+    restart: unless-stopped
+    networks:
+      - neuropsico-net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # Límites de recursos para producción
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    # Opciones de seguridad
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  neuropsico-net:
+    driver: bridge

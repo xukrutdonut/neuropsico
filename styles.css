@@ -1,0 +1,640 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 30px;
+    padding: 30px;
+}
+
+.input-section {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.input-section h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.instructions {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+}
+
+.category {
+    margin-bottom: 25px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.category h3 {
+    color: #764ba2;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 8px;
+}
+
+.subcategory {
+    color: #667eea;
+    font-size: 0.95em;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.subtest {
+    padding-left: 20px;
+}
+
+.subtest label {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.scale-info {
+    color: #667eea;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background: #f0f4ff;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.scale-tag {
+    font-size: 0.75em;
+    color: #667eea;
+    background: #f0f4ff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.input-group label {
+    flex: 1;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.input-group input {
+    width: 100px;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-group input:invalid {
+    border-color: #ff6b6b;
+}
+
+.btn-generate, .btn-clear, .btn-print {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+}
+
+.btn-generate {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-clear {
+    background: #f8f9fa;
+    color: #666;
+    border: 2px solid #ddd;
+}
+
+.btn-clear:hover {
+    background: #e9ecef;
+    border-color: #999;
+}
+
+.btn-print {
+    background: #28a745;
+    color: white;
+}
+
+.btn-print:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.chart-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.chart-section h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+#neuropsyChart {
+    max-width: 100%;
+    height: auto !important;
+}
+
+.legend {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+}
+
+.legend-color {
+    width: 30px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.domain-averages {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.domain-averages h3 {
+    color: #667eea;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.domain-average-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: white;
+    border-radius: 5px;
+    border-left: 4px solid;
+}
+
+.domain-average-item strong {
+    flex: 1;
+}
+
+.domain-average-item .average-value {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Scrollbar personalizado */
+.input-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.input-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.input-section::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.input-section::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+    
+    .input-section {
+        max-height: none;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .input-section, .btn-generate, .btn-clear, .btn-print {
+        display: none;
+    }
+    
+    .content {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+    
+    .container {
+        box-shadow: none;
+        border-radius: 0;
+    }
+    
+    header {
+        background: white;
+        color: #333;
+        border-bottom: 2px solid #667eea;
+    }
+}
+
+/* FASE 3: Estilos para Análisis Avanzado */
+.advanced-analysis {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 15px;
+}
+
+.analysis-section h2 {
+    color: #667eea;
+    margin-bottom: 25px;
+    font-size: 2em;
+    text-align: center;
+    border-bottom: 3px solid #764ba2;
+    padding-bottom: 15px;
+}
+
+.analysis-subsection {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.analysis-subsection h3 {
+    color: #764ba2;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-left: 4px solid #667eea;
+    padding-left: 15px;
+}
+
+.analysis-subsection h4 {
+    color: #667eea;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.analysis-intro {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f0f4ff;
+    border-radius: 5px;
+}
+
+.analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.analysis-table thead {
+    background: #667eea;
+    color: white;
+}
+
+.analysis-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.analysis-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.analysis-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.strength-badge {
+    background: #28a745;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.weakness-badge {
+    background: #dc3545;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.analysis-table tr.significant {
+    background: #fff3cd;
+}
+
+.analysis-table tr.moderate {
+    background: #e7f3ff;
+}
+
+/* Patrones Clínicos */
+.clinical-patterns {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.pattern-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pattern-card.high-probability {
+    border-left-color: #dc3545;
+}
+
+.pattern-card.moderate-probability {
+    border-left-color: #ffc107;
+}
+
+.pattern-card.low-probability {
+    border-left-color: #17a2b8;
+}
+
+.pattern-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.pattern-header h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.probability-badge {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.high-probability .probability-badge {
+    background: #dc3545;
+    color: white;
+}
+
+.moderate-probability .probability-badge {
+    background: #ffc107;
+    color: #333;
+}
+
+.low-probability .probability-badge {
+    background: #17a2b8;
+    color: white;
+}
+
+.pattern-description {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.pattern-recommendations {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.pattern-recommendations strong {
+    color: #667eea;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pattern-recommendations ul {
+    margin-left: 20px;
+}
+
+.pattern-recommendations li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Sugerencias de Tests */
+.test-suggestions {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.priority-high {
+    color: #dc3545;
+}
+
+.priority-medium {
+    color: #ffc107;
+}
+
+.suggestion-card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-left: 4px solid;
+    transition: all 0.3s;
+}
+
+.suggestion-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(5px);
+}
+
+.suggestion-card.priority-high {
+    border-left-color: #dc3545;
+}
+
+.suggestion-card.priority-medium {
+    border-left-color: #ffc107;
+}
+
+.suggestion-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.suggestion-type {
+    background: #667eea;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.suggestion-header strong {
+    color: #333;
+    font-size: 1.1em;
+}
+
+.suggestion-reason {
+    color: #666;
+    margin-bottom: 12px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.suggested-tests {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.suggested-tests strong {
+    color: #667eea;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.suggested-tests ul {
+    margin-left: 20px;
+}
+
+.suggested-tests li {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* Responsive para análisis avanzado */
+@media (max-width: 768px) {
+    .analysis-table {
+        font-size: 0.85em;
+    }
+    
+    .analysis-table th,
+    .analysis-table td {
+        padding: 8px;
+    }
+    
+    .pattern-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .suggestion-card {
+        padding: 15px;
+    }
+}
+
+@media print {
+    .advanced-analysis {
+        page-break-before: always;
+    }
+    
+    .pattern-card,
+    .suggestion-card {
+        page-break-inside: avoid;
+    }
+}

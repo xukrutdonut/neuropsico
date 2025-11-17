@@ -1,0 +1,28 @@
+# Environment
+.env
+.env.local
+
+# Docker volumes
+data/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*~
+
+# Build artifacts
+dist/
+build/

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Neuropsicológico - XBA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .xba-info {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        #xbaDetails {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .chc-ability-detail {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid;
+        }
+        .test-group {
+            background: #fafafa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .test-group h3 {
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        .test-description {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .badge-strong {
+            background: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .badge-moderate {
+            background: #f39c12;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .scale-info {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Perfil Neuropsicológico</h1>
+            <p class="subtitle">Cross-Battery Assessment (XBA) - Basado en Teoría CHC</p>
+        </header>
+
+        <div class="content">
+            <div class="input-section">
+                <h2>Evaluación Neuropsicológica XBA</h2>
+                
+                <div class="xba-info">
+                    <strong>📊 Filosofía XBA:</strong> Esta versión organiza los tests según la teoría CHC 
+                    (Cattell-Horn-Carroll). Cada capacidad amplia debe evaluarse con al menos 2 subtests 
+                    para obtener una medición fiable. Los tests están clasificados como FUERTE o MODERADO
+                    según su calidad como indicadores de cada capacidad.
+                </div>
+
+                <p><a href="index-selector.html" style="color: #667eea;">← Volver al selector de versiones</a></p>
+
+                <!-- Usa la misma estructura que index.html pero procesará con script-xba.js -->
+                <p style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 4px solid #f39c12;">
+                    <strong>ℹ️ Nota:</strong> Introduce las puntuaciones de los tests. El sistema los organizará 
+                    automáticamente por capacidades CHC y calculará las capacidades amplias con ponderación 
+                    por fuerza de medida.
+                </p>
+
+                <!-- Formulario organizado por Capacidades CHC -->
+                
+                <!-- Gf - Razonamiento Fluido -->
+                <div class="test-group" style="border-left: 4px solid #E74C3C;">
+                    <h3 style="color: #E74C3C;">🧠 Gf - Razonamiento Fluido</h3>
+                    <p class="test-description">Razonamiento inductivo y deductivo, resolución de problemas novedosos</p>
+                    
+                    <div class="input-group">
+                        <label>Matrices (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="matrices" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Balanzas (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="balanzas" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Aritmética (WISC-V) <span class="badge-moderate">MODERADO</span></label>
+                        <input type="number" id="aritmetica" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                </div>
+
+                <!-- Gc - Conocimiento Cristalizado -->
+                <div class="test-group" style="border-left: 4px solid #3498DB;">
+                    <h3 style="color: #3498DB;">📚 Gc - Conocimiento Cristalizado</h3>
+                    <p class="test-description">Conocimiento adquirido, comprensión verbal, información general</p>
+                    
+                    <div class="input-group">
+                        <label>Vocabulario (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="vocabulario" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Semejanzas (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="semejanzas" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Información (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="informacion" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Comprensión (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="comprension" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                </div>
+
+                <!-- Gv - Procesamiento Visual -->
+                <div class="test-group" style="border-left: 4px solid #9B59B6;">
+                    <h3 style="color: #9B59B6;">👁️ Gv - Procesamiento Visual</h3>
+                    <p class="test-description">Percepción, manipulación y razonamiento con estímulos visuales</p>
+                    
+                    <div class="input-group">
+                        <label>Cubos (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="cubos" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Puzles visuales (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="puzles" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                </div>
+
+                <!-- Gsm - Memoria a Corto Plazo -->
+                <div class="test-group" style="border-left: 4px solid #F39C12;">
+                    <h3 style="color: #F39C12;">🧩 Gsm - Memoria a Corto Plazo</h3>
+                    <p class="test-description">Retención y manipulación de información en memoria inmediata</p>
+                    
+                    <div class="input-group">
+                        <label>Dígitos (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="digitos" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Letras y números (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="letras_numeros" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Span de dibujos (WISC-V) <span class="badge-moderate">MODERADO</span></label>
+                        <input type="number" id="span_dibujos" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                </div>
+
+                <!-- Gs - Velocidad de Procesamiento -->
+                <div class="test-group" style="border-left: 4px solid #1ABC9C;">
+                    <h3 style="color: #1ABC9C;">⚡ Gs - Velocidad de Procesamiento</h3>
+                    <p class="test-description">Rapidez en tareas cognitivas automáticas simples</p>
+                    
+                    <div class="input-group">
+                        <label>Claves (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="claves" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Búsqueda de símbolos (WISC-V) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="busqueda_simbolos" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Atención Selectiva (CARAS-R) <span class="badge-moderate">MODERADO</span></label>
+                        <input type="number" id="caras_atencion" data-scale="t" min="20" max="80" placeholder="Ej: 50">
+                        <span class="scale-info">T (M=50, DE=10)</span>
+                    </div>
+                </div>
+
+                <!-- Glr - Almacenamiento y Recuperación L.P. -->
+                <div class="test-group" style="border-left: 4px solid #E67E22;">
+                    <h3 style="color: #E67E22;">💾 Glr - Almacenamiento y Recuperación a Largo Plazo</h3>
+                    <p class="test-description">Almacenar y recuperar información de la memoria a largo plazo</p>
+                    
+                    <div class="input-group">
+                        <label>Fluidez Fonológica (ENFEN) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="fluidez_fonologica" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Fluidez Semántica (ENFEN) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="fluidez_semantica" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Velocidad de Denominación (NEPSY-II) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="velocidad_denominacion" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                </div>
+
+                <!-- Ga - Procesamiento Auditivo -->
+                <div class="test-group" style="border-left: 4px solid #95A5A6;">
+                    <h3 style="color: #95A5A6;">👂 Ga - Procesamiento Auditivo</h3>
+                    <p class="test-description">Percepción y procesamiento de información auditiva</p>
+                    
+                    <div class="input-group">
+                        <label>Procesamiento Fonológico (NEPSY-II) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="procesamiento_fonologico" data-scale="scalar" min="1" max="19" placeholder="Ej: 10">
+                        <span class="scale-info">Escalar (M=10, DE=3)</span>
+                    </div>
+                </div>
+
+                <!-- Grw - Lectura y Escritura -->
+                <div class="test-group" style="border-left: 4px solid #34495E;">
+                    <h3 style="color: #34495E;">📖 Grw - Lectura y Escritura</h3>
+                    <p class="test-description">Habilidades de lectura, escritura y ortografía</p>
+                    
+                    <div class="input-group">
+                        <label>Precisión Lectora (PROLEC-R) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="lectura_precision" data-scale="v" min="40" max="160" placeholder="Ej: 100">
+                        <span class="scale-info">V (M=100, DE=15)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Comprensión Lectora (PROLEC-R) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="lectura_comprension" data-scale="v" min="40" max="160" placeholder="Ej: 100">
+                        <span class="scale-info">V (M=100, DE=15)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Ortografía/Dictado (TALE) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="escritura_ortografia" data-scale="t" min="20" max="80" placeholder="Ej: 50">
+                        <span class="scale-info">T (M=50, DE=10)</span>
+                    </div>
+                </div>
+
+                <!-- Gq - Conocimiento Cuantitativo -->
+                <div class="test-group" style="border-left: 4px solid #16A085;">
+                    <h3 style="color: #16A085;">🔢 Gq - Conocimiento Cuantitativo</h3>
+                    <p class="test-description">Conocimiento y razonamiento matemático</p>
+                    
+                    <div class="input-group">
+                        <label>Competencia Matemática (TEMA-3) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="matematicas_competencia" data-scale="t" min="20" max="80" placeholder="Ej: 50">
+                        <span class="scale-info">T (M=50, DE=10)</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Resolución de Problemas (TEMA-3) <span class="badge-strong">FUERTE</span></label>
+                        <input type="number" id="matematicas_problemas" data-scale="t" min="20" max="80" placeholder="Ej: 50">
+                        <span class="scale-info">T (M=50, DE=10)</span>
+                    </div>
+                </div>
+
+                <button id="generateBtn" class="btn-generate">Generar Perfil XBA</button>
+                <button id="clearBtn" class="btn-clear">Limpiar</button>
+                <button id="printBtn" class="btn-print">Imprimir</button>
+            </div>
+
+            <div class="chart-section">
+                <h2>Perfil de Capacidades Amplias CHC</h2>
+                <canvas id="neuropsyChart"></canvas>
+                <div id="xbaDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-xba.js"></script>
+</body>
+</html>

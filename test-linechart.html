@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Gráfico de Líneas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        canvas {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejemplo de Gráfico de Líneas - Perfil Neuropsicológico</h1>
+    
+    <div class="controls">
+        <button onclick="generateSampleChart()">Generar Ejemplo</button>
+        <button onclick="clearChart()">Limpiar</button>
+    </div>
+    
+    <canvas id="neuropsyChart"></canvas>
+    
+    <script>
+        const standardScales = {
+            'ci': { mean: 100, sd: 15, name: 'CI' },
+            'scalar': { mean: 10, sd: 3, name: 'Escalar' },
+            'decatipo': { mean: 5.5, sd: 2, name: 'Decatipo' }
+        };
+        
+        function standardScoreToZScore(score, scaleType) {
+            const scale = standardScales[scaleType];
+            if (!scale) return null;
+            const zScore = (score - scale.mean) / scale.sd;
+            return Math.max(-3, Math.min(3, zScore));
+        }
+        
+        function generateSampleChart() {
+            const sampleData = [
+                { testName: 'CI Total', originalScore: 82, scaleType: 'ci', zScore: standardScoreToZScore(82, 'ci') },
+                { testName: 'ICV', originalScore: 86, scaleType: 'ci', zScore: standardScoreToZScore(86, 'ci') },
+                { testName: 'Semejanzas', originalScore: 6, scaleType: 'scalar', zScore: standardScoreToZScore(6, 'scalar') },
+                { testName: 'Vocabulario', originalScore: 9, scaleType: 'scalar', zScore: standardScoreToZScore(9, 'scalar') },
+                { testName: 'IVE', originalScore: 86, scaleType: 'ci', zScore: standardScoreToZScore(86, 'ci') },
+                { testName: 'Cubos', originalScore: 9, scaleType: 'scalar', zScore: standardScoreToZScore(9, 'scalar') },
+                { testName: 'IRF', originalScore: 85, scaleType: 'ci', zScore: standardScoreToZScore(85, 'ci') },
+                { testName: 'Matrices', originalScore: 7, scaleType: 'scalar', zScore: standardScoreToZScore(7, 'scalar') },
+                { testName: 'IMT', originalScore: 76, scaleType: 'ci', zScore: standardScoreToZScore(76, 'ci') },
+                { testName: 'Dígitos', originalScore: 6, scaleType: 'scalar', zScore: standardScoreToZScore(6, 'scalar') },
+                { testName: 'IVP', originalScore: 91, scaleType: 'ci', zScore: standardScoreToZScore(91, 'ci') },
+                { testName: 'Claves', originalScore: 8, scaleType: 'scalar', zScore: standardScoreToZScore(8, 'scalar') },
+                { testName: 'Fl. Fonológica', originalScore: 1, scaleType: 'decatipo', zScore: standardScoreToZScore(1, 'decatipo') },
+                { testName: 'Fl. Semántica', originalScore: 1, scaleType: 'decatipo', zScore: standardScoreToZScore(1, 'decatipo') }
+            ];
+            
+            drawLineChart(sampleData);
+        }
+        
+        function drawLineChart(data) {
+            const canvas = document.getElementById('neuropsyChart');
+            const ctx = canvas.getContext('2d');
+            
+            const width = canvas.width = 1400;
+            const height = canvas.height = 700;
+            
+            const margin = { top: 60, right: 50, bottom: 120, left: 80 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            const zMin = -3;
+            const zMax = 3;
+            const numTests = data.length;
+            const xStep = chartWidth / (numTests + 1);
+            
+            function zToY(z) {
+                return margin.top + chartHeight - ((z - zMin) / (zMax - zMin)) * chartHeight;
+            }
+            
+            // Título
+            ctx.font = 'bold 24px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText('PERFIL NEUROPSICOLÓGICO', width / 2, 35);
+            
+            // Líneas horizontales
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.font = '12px Arial';
+            ctx.fillStyle = '#666';
+            ctx.textAlign = 'right';
+            
+            for (let z = zMin; z <= zMax; z++) {
+                const y = zToY(z);
+                
+                if (z === -2) {
+                    ctx.strokeStyle = '#ff0000';
+                    ctx.lineWidth = 2;
+                    ctx.setLineDash([5, 5]);
+                } else {
+                    ctx.strokeStyle = z === 0 ? '#999' : '#ddd';
+                    ctx.lineWidth = z === 0 ? 1.5 : 1;
+                    ctx.setLineDash([]);
+                }
+                
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(width - margin.right, y);
+                ctx.stroke();
+                
+                ctx.fillStyle = z === -2 ? '#ff0000' : '#666';
+                ctx.font = z === -2 ? 'bold 12px Arial' : '12px Arial';
+                ctx.fillText(z.toFixed(1), margin.left - 10, y + 4);
+            }
+            
+            ctx.setLineDash([]);
+            
+            // Eje Y label
+            ctx.save();
+            ctx.translate(20, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.font = 'bold 14px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText('z-score', 0, 0);
+            ctx.restore();
+            
+            // Dibujar línea
+            ctx.strokeStyle = '#4A90E2';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            data.forEach((item, index) => {
+                const x = margin.left + (index + 1) * xStep;
+                const y = zToY(item.zScore);
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            
+            // Dibujar puntos
+            data.forEach((item, index) => {
+                const x = margin.left + (index + 1) * xStep;
+                const y = zToY(item.zScore);
+                
+                ctx.fillStyle = '#4A90E2';
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                ctx.font = 'bold 10px Arial';
+                ctx.fillStyle = '#333';
+                ctx.textAlign = 'center';
+                ctx.fillText(item.zScore.toFixed(2), x, y - 12);
+                
+                ctx.font = '9px Arial';
+                ctx.fillStyle = '#666';
+                const scaleLabel = standardScales[item.scaleType].name;
+                ctx.fillText(`${scaleLabel}=${item.originalScore}`, x, y + 20);
+            });
+            
+            // Etiquetas tests
+            ctx.font = '11px Arial';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'right';
+            
+            data.forEach((item, index) => {
+                const x = margin.left + (index + 1) * xStep;
+                const y = height - margin.bottom + 10;
+                
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(-Math.PI / 4);
+                ctx.fillText(item.testName, 0, 0);
+                ctx.restore();
+            });
+            
+            // Borde
+            ctx.strokeStyle = '#999';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(margin.left, margin.top, chartWidth, chartHeight);
+            
+            // Leyenda línea roja
+            ctx.fillStyle = '#ff0000';
+            ctx.font = 'bold 11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('z = -2 (Límite clínico)', width - margin.right - 150, 50);
+        }
+        
+        function clearChart() {
+            const canvas = document.getElementById('neuropsyChart');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        
+        // Generar ejemplo al cargar
+        window.addEventListener('load', generateSampleChart);
+    </script>
+</body>
+</html>

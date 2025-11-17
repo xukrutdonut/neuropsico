@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Tests - Perfil Neuropsicológico</title>
+    <link rel="stylesheet" href="styles-config.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Configuración de Tests Neuropsicológicos</h1>
+            <p class="subtitle">Arrastra los tests desde la biblioteca hacia tu formulario personalizado</p>
+        </header>
+
+        <div class="toolbar">
+            <button id="clearBtn" class="btn-secondary">Limpiar Selección</button>
+            <button id="continueBtn" class="btn-primary">Continuar a Evaluación →</button>
+        </div>
+
+        <div class="main-content">
+            <!-- Columna izquierda: Biblioteca de tests -->
+            <div class="library-column">
+                <h2>Biblioteca de Tests</h2>
+                <p class="column-subtitle">Organizados por batería comercial</p>
+                
+                <div class="test-library">
+                    <!-- WISC-V -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">WISC-V (Escala Wechsler)</h3>
+                        
+                        <div class="battery-section">
+                            <h4 class="section-title">Índices Principales</h4>
+                            <div class="test-item" draggable="true" 
+                                 data-test="ci_total" 
+                                 data-domain="inteligencia"
+                                 data-chc="g"
+                                 data-scale="ci"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">CI Total</span>
+                                <span class="test-scale">CI</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="icv" 
+                                 data-domain="inteligencia"
+                                 data-chc="gc"
+                                 data-scale="ci"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Índice Comprensión Verbal (ICV)</span>
+                                <span class="test-scale">CI</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="ive" 
+                                 data-domain="inteligencia"
+                                 data-chc="gv"
+                                 data-scale="ci"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Índice Visoespacial (IVE)</span>
+                                <span class="test-scale">CI</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="irf" 
+                                 data-domain="inteligencia"
+                                 data-chc="gf"
+                                 data-scale="ci"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Índice Razonamiento Fluido (IRF)</span>
+                                <span class="test-scale">CI</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="imt" 
+                                 data-domain="inteligencia"
+                                 data-chc="gwm"
+                                 data-scale="ci"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Índice Memoria de Trabajo (IMT)</span>
+                                <span class="test-scale">CI</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="ivp" 
+                                 data-domain="inteligencia"
+                                 data-chc="gs"
+                                 data-scale="ci"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Índice Velocidad Procesamiento (IVP)</span>
+                                <span class="test-scale">CI</span>
+                            </div>
+                        </div>
+
+                        <div class="battery-section">
+                            <h4 class="section-title">Subtests Comprensión Verbal</h4>
+                            <div class="test-item" draggable="true" 
+                                 data-test="semejanzas" 
+                                 data-domain="inteligencia"
+                                 data-chc="gc"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Semejanzas</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="vocabulario" 
+                                 data-domain="inteligencia"
+                                 data-chc="gc"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Vocabulario</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="informacion" 
+                                 data-domain="inteligencia"
+                                 data-chc="gc"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Información</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="comprension" 
+                                 data-domain="inteligencia"
+                                 data-chc="gc"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Comprensión</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                        </div>
+
+                        <div class="battery-section">
+                            <h4 class="section-title">Subtests Visoespacial</h4>
+                            <div class="test-item" draggable="true" 
+                                 data-test="cubos" 
+                                 data-domain="inteligencia"
+                                 data-chc="gv"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Cubos</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="puzles" 
+                                 data-domain="inteligencia"
+                                 data-chc="gv"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Puzles Visuales</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                        </div>
+
+                        <div class="battery-section">
+                            <h4 class="section-title">Subtests Razonamiento Fluido</h4>
+                            <div class="test-item" draggable="true" 
+                                 data-test="matrices" 
+                                 data-domain="inteligencia"
+                                 data-chc="gf"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Matrices</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="balanzas" 
+                                 data-domain="inteligencia"
+                                 data-chc="gf"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Balanzas</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="aritmetica" 
+                                 data-domain="inteligencia"
+                                 data-chc="gf"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Aritmética</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                        </div>
+
+                        <div class="battery-section">
+                            <h4 class="section-title">Subtests Memoria de Trabajo</h4>
+                            <div class="test-item" draggable="true" 
+                                 data-test="digitos" 
+                                 data-domain="inteligencia"
+                                 data-chc="gwm"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Dígitos</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="span_dibujos" 
+                                 data-domain="inteligencia"
+                                 data-chc="gwm"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Span de Dibujos</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="letras_numeros" 
+                                 data-domain="inteligencia"
+                                 data-chc="gwm"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Letras y Números</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                        </div>
+
+                        <div class="battery-section">
+                            <h4 class="section-title">Subtests Velocidad de Procesamiento</h4>
+                            <div class="test-item" draggable="true" 
+                                 data-test="claves" 
+                                 data-domain="inteligencia"
+                                 data-chc="gs"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Claves</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="busqueda_simbolos" 
+                                 data-domain="inteligencia"
+                                 data-chc="gs"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Búsqueda de Símbolos</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="cancelacion" 
+                                 data-domain="inteligencia"
+                                 data-chc="gs"
+                                 data-scale="scalar"
+                                 data-battery="WISC-V">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Cancelación</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CSAT-R -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">CSAT-R (Atención Sostenida)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="csat_aciertos" 
+                                 data-domain="atencion"
+                                 data-chc="ga"
+                                 data-scale="t"
+                                 data-battery="CSAT-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Aciertos</span>
+                                <span class="test-scale">T</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="csat_errores" 
+                                 data-domain="atencion"
+                                 data-chc="ga"
+                                 data-scale="t"
+                                 data-battery="CSAT-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Errores</span>
+                                <span class="test-scale">T</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARAS-R -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">CARAS-R (Atención Selectiva)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="caras_aciertos" 
+                                 data-domain="atencion"
+                                 data-chc="ga"
+                                 data-scale="percentile"
+                                 data-battery="CARAS-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Aciertos</span>
+                                <span class="test-scale">Percentil</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="caras_errores" 
+                                 data-domain="atencion"
+                                 data-chc="ga"
+                                 data-scale="percentile"
+                                 data-battery="CARAS-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Errores</span>
+                                <span class="test-scale">Percentil</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="caras_ici" 
+                                 data-domain="atencion"
+                                 data-chc="ga"
+                                 data-scale="percentile"
+                                 data-battery="CARAS-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">ICI (Control Impulsividad)</span>
+                                <span class="test-scale">Percentil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENFEN -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">ENFEN (Funciones Ejecutivas)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="fluidez_fonologica" 
+                                 data-domain="ejecutiva"
+                                 data-chc="gf"
+                                 data-scale="decatipo"
+                                 data-battery="ENFEN">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Fluidez Fonológica</span>
+                                <span class="test-scale">Decatipo</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="fluidez_semantica" 
+                                 data-domain="ejecutiva"
+                                 data-chc="gf"
+                                 data-scale="decatipo"
+                                 data-battery="ENFEN">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Fluidez Semántica</span>
+                                <span class="test-scale">Decatipo</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="sendero_gris" 
+                                 data-domain="ejecutiva"
+                                 data-chc="ga"
+                                 data-scale="decatipo"
+                                 data-battery="ENFEN">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Sendero Gris (Atención)</span>
+                                <span class="test-scale">Decatipo</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="sendero_color" 
+                                 data-domain="ejecutiva"
+                                 data-chc="gf"
+                                 data-scale="decatipo"
+                                 data-battery="ENFEN">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Sendero Color (Flexibilidad)</span>
+                                <span class="test-scale">Decatipo</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="anillas" 
+                                 data-domain="ejecutiva"
+                                 data-chc="gf"
+                                 data-scale="decatipo"
+                                 data-battery="ENFEN">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Anillas (Planificación)</span>
+                                <span class="test-scale">Decatipo</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="interferencia" 
+                                 data-domain="ejecutiva"
+                                 data-chc="gf"
+                                 data-scale="decatipo"
+                                 data-battery="ENFEN">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Interferencia</span>
+                                <span class="test-scale">Decatipo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEPSY-II -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">NEPSY-II (Lenguaje)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="comp_instrucciones" 
+                                 data-domain="lenguaje"
+                                 data-chc="gc"
+                                 data-scale="scalar"
+                                 data-battery="NEPSY-II">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Comprensión de Instrucciones</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="proc_fonologico" 
+                                 data-domain="lenguaje"
+                                 data-chc="gc"
+                                 data-scale="scalar"
+                                 data-battery="NEPSY-II">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Procesamiento Fonológico</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="vel_denominacion" 
+                                 data-domain="lenguaje"
+                                 data-chc="gs"
+                                 data-scale="scalar"
+                                 data-battery="NEPSY-II">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Velocidad de Denominación</span>
+                                <span class="test-scale">Escalar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROLEC-R -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">PROLEC-R (Lectura)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="nombre_letras" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Nombre de Letras</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="igual_diferente" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Igual-Diferente</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="lectura_palabras" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Lectura de Palabras</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="lectura_pseudopalabras" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Lectura de Pseudopalabras</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="estructuras_gramaticales" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Estructuras Gramaticales</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="signos_puntuacion" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Signos de Puntuación</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="comp_oraciones" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Comprensión de Oraciones</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="comp_textos" 
+                                 data-domain="lectura"
+                                 data-chc="grw"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Comprensión de Textos</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="comp_oral" 
+                                 data-domain="lectura"
+                                 data-chc="gc"
+                                 data-scale="pd"
+                                 data-battery="PROLEC-R">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Comprensión Oral</span>
+                                <span class="test-scale">PD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TALE -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">TALE (Escritura)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="ortografia_natural" 
+                                 data-domain="escritura"
+                                 data-chc="grw"
+                                 data-scale="z"
+                                 data-battery="TALE">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Ortografía Natural</span>
+                                <span class="test-scale">z-score</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="ortografia_arbitraria" 
+                                 data-domain="escritura"
+                                 data-chc="grw"
+                                 data-scale="z"
+                                 data-battery="TALE">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Ortografía Arbitraria</span>
+                                <span class="test-scale">z-score</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TEMA-3 -->
+                    <div class="battery-group">
+                        <h3 class="battery-title">TEMA-3 (Matemáticas)</h3>
+                        <div class="battery-section">
+                            <div class="test-item" draggable="true" 
+                                 data-test="comp_matematica" 
+                                 data-domain="matematicas"
+                                 data-chc="gq"
+                                 data-scale="t"
+                                 data-battery="TEMA-3">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Competencia Matemática</span>
+                                <span class="test-scale">T</span>
+                            </div>
+                            <div class="test-item" draggable="true" 
+                                 data-test="resol_problemas" 
+                                 data-domain="matematicas"
+                                 data-chc="gq"
+                                 data-scale="t"
+                                 data-battery="TEMA-3">
+                                <span class="drag-handle">⋮⋮</span>
+                                <span class="test-name">Resolución de Problemas</span>
+                                <span class="test-scale">T</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna derecha: Formulario personalizado -->
+            <div class="form-column">
+                <h2>Formulario Personalizado</h2>
+                <p class="column-subtitle">Agrupado por dominios CHC</p>
+                
+                <div class="form-builder">
+                    <div class="chc-domain" data-chc="g">
+                        <h3 class="domain-title">Inteligencia General (g)</h3>
+                        <div class="drop-zone" data-chc="g"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="gc">
+                        <h3 class="domain-title">Conocimiento Cristalizado (Gc)</h3>
+                        <div class="drop-zone" data-chc="gc"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="gf">
+                        <h3 class="domain-title">Razonamiento Fluido (Gf)</h3>
+                        <div class="drop-zone" data-chc="gf"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="gv">
+                        <h3 class="domain-title">Procesamiento Visual (Gv)</h3>
+                        <div class="drop-zone" data-chc="gv"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="gwm">
+                        <h3 class="domain-title">Memoria de Trabajo (Gwm)</h3>
+                        <div class="drop-zone" data-chc="gwm"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="gs">
+                        <h3 class="domain-title">Velocidad de Procesamiento (Gs)</h3>
+                        <div class="drop-zone" data-chc="gs"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="ga">
+                        <h3 class="domain-title">Procesamiento Auditivo y Atención (Ga)</h3>
+                        <div class="drop-zone" data-chc="ga"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="grw">
+                        <h3 class="domain-title">Lectura y Escritura (Grw)</h3>
+                        <div class="drop-zone" data-chc="grw"></div>
+                    </div>
+
+                    <div class="chc-domain" data-chc="gq">
+                        <h3 class="domain-title">Conocimiento Cuantitativo (Gq)</h3>
+                        <div class="drop-zone" data-chc="gq"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-config.js"></script>
+</body>
+</html>

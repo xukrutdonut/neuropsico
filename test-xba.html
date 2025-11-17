@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test XBA - Validación</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 20px auto; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-left: 4px solid #ccc; }
+        .pass { border-color: #27ae60; background: #eafaf1; }
+        .fail { border-color: #e74c3c; background: #fadbd8; }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; margin-top: 30px; }
+        .info { background: #e8f4f8; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Validación - Cross-Battery Assessment (XBA)</h1>
+    
+    <div class="info">
+        <strong>Objetivo:</strong> Validar que el sistema XBA calcule correctamente las capacidades amplias CHC
+        a partir de las puntuaciones de los subtests.
+    </div>
+
+    <h2>Tests de Conversión de Escalas</h2>
+    <div id="scaleTests"></div>
+
+    <h2>Tests de Clasificación CHC</h2>
+    <div id="chcTests"></div>
+
+    <h2>Tests de Cálculo de Capacidades Amplias</h2>
+    <div id="broadAbilityTests"></div>
+
+    <script src="script-xba.js"></script>
+    <script>
+        function runTests() {
+            const results = {
+                scale: [],
+                chc: [],
+                broad: []
+            };
+
+            // 1. Test de conversión de escalas
+            console.log('=== Test 1: Conversión de Escalas ===');
+            
+            // Escalar: 10 → z = 0
+            const test1 = standardScoreToZScore(10, 'scalar');
+            results.scale.push({
+                name: 'Escalar 10 → z = 0',
+                expected: 0,
+                actual: test1,
+                pass: Math.abs(test1 - 0) < 0.01
+            });
+
+            // Escalar: 13 → z = 1
+            const test2 = standardScoreToZScore(13, 'scalar');
+            results.scale.push({
+                name: 'Escalar 13 → z = 1',
+                expected: 1,
+                actual: test2,
+                pass: Math.abs(test2 - 1) < 0.01
+            });
+
+            // T: 50 → z = 0
+            const test3 = standardScoreToZScore(50, 't');
+            results.scale.push({
+                name: 'T 50 → z = 0',
+                expected: 0,
+                actual: test3,
+                pass: Math.abs(test3 - 0) < 0.01
+            });
+
+            // T: 60 → z = 1
+            const test4 = standardScoreToZScore(60, 't');
+            results.scale.push({
+                name: 'T 60 → z = 1',
+                expected: 1,
+                actual: test4,
+                pass: Math.abs(test4 - 1) < 0.01
+            });
+
+            // V: 100 → z = 0
+            const test5 = standardScoreToZScore(100, 'v');
+            results.scale.push({
+                name: 'V 100 → z = 0',
+                expected: 0,
+                actual: test5,
+                pass: Math.abs(test5 - 0) < 0.01
+            });
+
+            // V: 115 → z = 1
+            const test6 = standardScoreToZScore(115, 'v');
+            results.scale.push({
+                name: 'V 115 → z = 1',
+                expected: 1,
+                actual: test6,
+                pass: Math.abs(test6 - 1) < 0.01
+            });
+
+            // 2. Test de clasificación CHC
+            console.log('=== Test 2: Clasificación CHC ===');
+            
+            results.chc.push({
+                name: 'Matrices → Gf (Razonamiento Fluido)',
+                expected: 'gf',
+                actual: testClassification['matrices'].chc,
+                pass: testClassification['matrices'].chc === 'gf'
+            });
+
+            results.chc.push({
+                name: 'Vocabulario → Gc (Conocimiento Cristalizado)',
+                expected: 'gc',
+                actual: testClassification['vocabulario'].chc,
+                pass: testClassification['vocabulario'].chc === 'gc'
+            });
+
+            results.chc.push({
+                name: 'Cubos → Gv (Procesamiento Visual)',
+                expected: 'gv',
+                actual: testClassification['cubos'].chc,
+                pass: testClassification['cubos'].chc === 'gv'
+            });
+
+            results.chc.push({
+                name: 'Dígitos → Gsm (Memoria a Corto Plazo)',
+                expected: 'gsm',
+                actual: testClassification['digitos'].chc,
+                pass: testClassification['digitos'].chc === 'gsm'
+            });
+
+            results.chc.push({
+                name: 'Claves → Gs (Velocidad de Procesamiento)',
+                expected: 'gs',
+                actual: testClassification['claves'].chc,
+                pass: testClassification['claves'].chc === 'gs'
+            });
+
+            results.chc.push({
+                name: 'Fluidez Fonológica → Glr (Almacenamiento L.P.)',
+                expected: 'glr',
+                actual: testClassification['fluidez_fonologica'].chc,
+                pass: testClassification['fluidez_fonologica'].chc === 'glr'
+            });
+
+            results.chc.push({
+                name: 'Procesamiento Fonológico → Ga (Procesamiento Auditivo)',
+                expected: 'ga',
+                actual: testClassification['procesamiento_fonologico'].chc,
+                pass: testClassification['procesamiento_fonologico'].chc === 'ga'
+            });
+
+            results.chc.push({
+                name: 'Lectura Precisión → Grw (Lectura y Escritura)',
+                expected: 'grw',
+                actual: testClassification['lectura_precision'].chc,
+                pass: testClassification['lectura_precision'].chc === 'grw'
+            });
+
+            results.chc.push({
+                name: 'Matemáticas Competencia → Gq (Conocimiento Cuantitativo)',
+                expected: 'gq',
+                actual: testClassification['matematicas_competencia'].chc,
+                pass: testClassification['matematicas_competencia'].chc === 'gq'
+            });
+
+            // 3. Test de cálculo de capacidades amplias
+            console.log('=== Test 3: Cálculo de Capacidades Amplias ===');
+            
+            // Simular datos para Gf con 2 tests fuertes
+            const gfData = {
+                'gf': [
+                    { testName: 'Matrices', zScore: 1.0, strength: 'strong' },
+                    { testName: 'Balanzas', zScore: 1.0, strength: 'strong' }
+                ]
+            };
+            const gfResult = calculateBroadAbilities(gfData);
+            results.broad.push({
+                name: 'Gf con 2 tests fuertes (z=1.0) → z promedio = 1.0',
+                expected: 1.0,
+                actual: gfResult['gf'] ? gfResult['gf'].zScore : null,
+                pass: gfResult['gf'] && Math.abs(gfResult['gf'].zScore - 1.0) < 0.01
+            });
+
+            // Simular datos para Gc con tests de diferentes fortalezas
+            const gcData = {
+                'gc': [
+                    { testName: 'Vocabulario', zScore: 1.0, strength: 'strong' },
+                    { testName: 'Comprensión', zScore: 0.0, strength: 'moderate' }
+                ]
+            };
+            const gcResult = calculateBroadAbilities(gcData);
+            const expectedGc = (1.0 * 1.0 + 0.0 * 0.75) / (1.0 + 0.75);
+            results.broad.push({
+                name: 'Gc con 1 fuerte (z=1.0) y 1 moderado (z=0.0) → z ponderado',
+                expected: expectedGc,
+                actual: gcResult['gc'] ? gcResult['gc'].zScore : null,
+                pass: gcResult['gc'] && Math.abs(gcResult['gc'].zScore - expectedGc) < 0.01
+            });
+
+            // Mostrar resultados
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            // Tests de escala
+            let html = '';
+            results.scale.forEach(test => {
+                html += `<div class="test-result ${test.pass ? 'pass' : 'fail'}">
+                    ${test.pass ? '✓' : '✗'} ${test.name}<br>
+                    Esperado: ${test.expected.toFixed(2)}, Obtenido: ${test.actual.toFixed(2)}
+                </div>`;
+            });
+            document.getElementById('scaleTests').innerHTML = html;
+
+            // Tests CHC
+            html = '';
+            results.chc.forEach(test => {
+                html += `<div class="test-result ${test.pass ? 'pass' : 'fail'}">
+                    ${test.pass ? '✓' : '✗'} ${test.name}<br>
+                    Esperado: ${test.expected}, Obtenido: ${test.actual}
+                </div>`;
+            });
+            document.getElementById('chcTests').innerHTML = html;
+
+            // Tests de capacidades amplias
+            html = '';
+            results.broad.forEach(test => {
+                html += `<div class="test-result ${test.pass ? 'pass' : 'fail'}">
+                    ${test.pass ? '✓' : '✗'} ${test.name}<br>
+                    Esperado: ${test.expected.toFixed(2)}, Obtenido: ${test.actual ? test.actual.toFixed(2) : 'null'}
+                </div>`;
+            });
+            document.getElementById('broadAbilityTests').innerHTML = html;
+
+            // Resumen
+            const totalTests = results.scale.length + results.chc.length + results.broad.length;
+            const passedTests = results.scale.filter(t => t.pass).length + 
+                               results.chc.filter(t => t.pass).length + 
+                               results.broad.filter(t => t.pass).length;
+            
+            console.log(`\n=== RESUMEN ===`);
+            console.log(`Tests pasados: ${passedTests}/${totalTests}`);
+            console.log(`Porcentaje: ${((passedTests/totalTests)*100).toFixed(1)}%`);
+        }
+
+        // Ejecutar tests al cargar
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

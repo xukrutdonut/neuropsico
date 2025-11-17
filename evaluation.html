@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Neuropsicológica</title>
+    <link rel="stylesheet" href="styles-evaluation.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Evaluación Neuropsicológica</h1>
+            <p class="subtitle">Introduce las puntuaciones obtenidas en cada test</p>
+        </header>
+
+        <div class="toolbar">
+            <button id="backBtn" class="btn-secondary">← Volver a Configuración</button>
+            <button id="generateBtn" class="btn-primary">Generar Perfil</button>
+            <button id="clearBtn" class="btn-secondary">Limpiar Datos</button>
+            <button id="printBtn" class="btn-secondary">Imprimir</button>
+        </div>
+
+        <div class="main-content">
+            <!-- Columna izquierda: Formulario de puntuaciones -->
+            <div class="input-section">
+                <h2>Puntuaciones</h2>
+                <p class="section-subtitle">Introduce las puntuaciones estandarizadas obtenidas</p>
+                
+                <div id="dynamicForm" class="dynamic-form">
+                    <!-- Se generará dinámicamente según la configuración -->
+                </div>
+            </div>
+
+            <!-- Columna derecha: Perfil neuropsicológico -->
+            <div class="chart-section">
+                <h2>Perfil del Neurodesarrollo</h2>
+                <div id="chartContainer">
+                    <canvas id="neuropsyChart"></canvas>
+                </div>
+                <div id="noDataMessage" class="no-data-message">
+                    <p>Introduce las puntuaciones y pulsa "Generar Perfil" para visualizar el perfil neuropsicológico</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="script-evaluation.js"></script>
+</body>
+</html>

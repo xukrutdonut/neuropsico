@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test del Sistema</title>
+</head>
+<body>
+    <h1>Test de Verificación del Sistema</h1>
+    <div id="results"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        const results = document.getElementById('results');
+        let passed = 0;
+        let failed = 0;
+        
+        function test(name, fn) {
+            try {
+                fn();
+                results.innerHTML += `<p style="color: green;">✓ ${name}</p>`;
+                passed++;
+            } catch (e) {
+                results.innerHTML += `<p style="color: red;">✗ ${name}: ${e.message}</p>`;
+                failed++;
+            }
+        }
+        
+        // Tests
+        test('standardScales existe', () => {
+            if (typeof standardScales === 'undefined') throw new Error('No definido');
+        });
+        
+        test('Conversión CI a z-score', () => {
+            const z = standardScoreToZScore(100, 'ci');
+            if (Math.abs(z - 0) > 0.01) throw new Error(`Esperado 0, obtenido ${z}`);
+        });
+        
+        test('Conversión T a z-score', () => {
+            const z = standardScoreToZScore(60, 't');
+            if (Math.abs(z - 1) > 0.01) throw new Error(`Esperado 1, obtenido ${z}`);
+        });
+        
+        test('Conversión Escalar a z-score', () => {
+            const z = standardScoreToZScore(13, 'scalar');
+            if (Math.abs(z - 1) > 0.01) throw new Error(`Esperado 1, obtenido ${z}`);
+        });
+        
+        test('Conversión Percentil a z-score', () => {
+            const z = percentileToZScore(50);
+            if (Math.abs(z - 0) > 0.01) throw new Error(`Esperado 0, obtenido ${z}`);
+        });
+        
+        test('localStorage disponible', () => {
+            if (typeof localStorage === 'undefined') throw new Error('No disponible');
+            localStorage.setItem('test', 'ok');
+            if (localStorage.getItem('test') !== 'ok') throw new Error('No funciona');
+            localStorage.removeItem('test');
+        });
+        
+        // Resumen
+        results.innerHTML += `<hr><h2>Resumen: ${passed} pasados, ${failed} fallidos</h2>`;
+        
+        if (failed === 0) {
+            results.innerHTML += '<p style="color: green; font-weight: bold;">✓ TODOS LOS TESTS PASARON</p>';
+        } else {
+            results.innerHTML += '<p style="color: red; font-weight: bold;">✗ HAY TESTS FALLIDOS</p>';
+        }
+    </script>
+</body>
+</html>

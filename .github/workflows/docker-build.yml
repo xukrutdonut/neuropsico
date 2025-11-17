@@ -1,0 +1,56 @@
+name: Docker Build & Test
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Build Docker image
+      run: docker build -t neuropsico-test .
+    
+    - name: Run container
+      run: docker run -d -p 8090:80 --name neuropsico-test neuropsico-test
+    
+    - name: Wait for container to be ready
+      run: sleep 5
+    
+    - name: Test HTTP response
+      run: |
+        HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8090)
+        if [ "$HTTP_CODE" != "200" ]; then
+          echo "Error: HTTP $HTTP_CODE"
+          docker logs neuropsico-test
+          exit 1
+        fi
+        echo "✓ HTTP 200 OK"
+    
+    - name: Test content
+      run: |
+        if curl -s http://localhost:8090 | grep -q "Neuropsicológico"; then
+          echo "✓ Contenido válido"
+        else
+          echo "✗ Contenido inválido"
+          exit 1
+        fi
+    
+    - name: Show container logs
+      if: failure()
+      run: docker logs neuropsico-test
+    
+    - name: Cleanup
+      if: always()
+      run: |
+        docker stop neuropsico-test || true
+        docker rm neuropsico-test || true

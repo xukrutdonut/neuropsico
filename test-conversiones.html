@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de Conversión de Puntuaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        .correct {
+            background: #d4edda;
+        }
+        h1 {
+            color: #667eea;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Conversión de Puntuaciones Estandarizadas</h1>
+    
+    <div class="info">
+        <strong>Fórmula:</strong> z = (Puntuación - Media) / Desviación Estándar
+    </div>
+
+    <h2>Escalas Definidas</h2>
+    <table>
+        <tr>
+            <th>Escala</th>
+            <th>Nombre</th>
+            <th>Media</th>
+            <th>DE</th>
+            <th>Tests que la usan</th>
+        </tr>
+        <tr>
+            <td><strong>CI</strong></td>
+            <td>Cociente Intelectual</td>
+            <td>100</td>
+            <td>15</td>
+            <td>WISC-V (índices)</td>
+        </tr>
+        <tr>
+            <td><strong>T</strong></td>
+            <td>Puntuación T</td>
+            <td>50</td>
+            <td>10</td>
+            <td>CSAT-R, CARAS-R, TALE, TEMA-3</td>
+        </tr>
+        <tr>
+            <td><strong>Escalar</strong></td>
+            <td>Puntuación Escalar</td>
+            <td>10</td>
+            <td>3</td>
+            <td>ENFEN, NEPSY-II</td>
+        </tr>
+        <tr>
+            <td><strong>V</strong></td>
+            <td>Puntuación V</td>
+            <td>100</td>
+            <td>15</td>
+            <td>PROLEC-R</td>
+        </tr>
+    </table>
+
+    <h2>Validación de Conversiones</h2>
+    <table id="resultsTable">
+        <tr>
+            <th>Escala</th>
+            <th>Puntuación</th>
+            <th>Cálculo</th>
+            <th>z-score esperado</th>
+            <th>z-score obtenido</th>
+            <th>Estado</th>
+        </tr>
+    </table>
+
+    <script>
+        // Copiar las funciones del script.js
+        const standardScales = {
+            'ci': { mean: 100, sd: 15, name: 'CI' },
+            't': { mean: 50, sd: 10, name: 'T' },
+            'scalar': { mean: 10, sd: 3, name: 'Escalar' },
+            'v': { mean: 100, sd: 15, name: 'V' },
+            'z': { mean: 0, sd: 1, name: 'z' }
+        };
+
+        function standardScoreToZScore(score, scaleType) {
+            const scale = standardScales[scaleType];
+            if (!scale) return null;
+            const zScore = (score - scale.mean) / scale.sd;
+            return Math.max(-3, Math.min(3, zScore));
+        }
+
+        // Casos de prueba
+        const testCases = [
+            { scale: 'ci', score: 100, expected: 0.00, desc: '(100-100)/15' },
+            { scale: 'ci', score: 115, expected: 1.00, desc: '(115-100)/15' },
+            { scale: 'ci', score: 85, expected: -1.00, desc: '(85-100)/15' },
+            { scale: 'ci', score: 130, expected: 2.00, desc: '(130-100)/15' },
+            { scale: 'ci', score: 70, expected: -2.00, desc: '(70-100)/15' },
+            
+            { scale: 't', score: 50, expected: 0.00, desc: '(50-50)/10' },
+            { scale: 't', score: 60, expected: 1.00, desc: '(60-50)/10' },
+            { scale: 't', score: 40, expected: -1.00, desc: '(40-50)/10' },
+            { scale: 't', score: 70, expected: 2.00, desc: '(70-50)/10' },
+            { scale: 't', score: 30, expected: -2.00, desc: '(30-50)/10' },
+            
+            { scale: 'scalar', score: 10, expected: 0.00, desc: '(10-10)/3' },
+            { scale: 'scalar', score: 13, expected: 1.00, desc: '(13-10)/3' },
+            { scale: 'scalar', score: 7, expected: -1.00, desc: '(7-10)/3' },
+            { scale: 'scalar', score: 16, expected: 2.00, desc: '(16-10)/3' },
+            { scale: 'scalar', score: 4, expected: -2.00, desc: '(4-10)/3' },
+            
+            { scale: 'v', score: 100, expected: 0.00, desc: '(100-100)/15' },
+            { scale: 'v', score: 115, expected: 1.00, desc: '(115-100)/15' },
+            { scale: 'v', score: 85, expected: -1.00, desc: '(85-100)/15' }
+        ];
+
+        // Ejecutar tests
+        const table = document.getElementById('resultsTable');
+        let allCorrect = true;
+
+        testCases.forEach(test => {
+            const result = standardScoreToZScore(test.score, test.scale);
+            const correct = Math.abs(result - test.expected) < 0.01;
+            
+            if (!correct) allCorrect = false;
+
+            const row = table.insertRow();
+            row.className = correct ? 'correct' : '';
+            
+            row.insertCell(0).textContent = standardScales[test.scale].name;
+            row.insertCell(1).textContent = test.score;
+            row.insertCell(2).textContent = test.desc;
+            row.insertCell(3).textContent = test.expected.toFixed(2);
+            row.insertCell(4).textContent = result.toFixed(2);
+            row.insertCell(5).textContent = correct ? '✅ OK' : '❌ ERROR';
+        });
+
+        // Mensaje final
+        if (allCorrect) {
+            const message = document.createElement('div');
+            message.className = 'info';
+            message.style.background = '#d4edda';
+            message.innerHTML = '<strong>✅ Todos los tests pasaron correctamente</strong><br>El sistema de conversión de puntuaciones está funcionando correctamente.';
+            document.body.appendChild(message);
+        }
+    </script>
+</body>
+</html>

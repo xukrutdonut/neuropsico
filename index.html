@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Neuropsicológico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .welcome-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px;
+            text-align: center;
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #6c757d;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+        
+        .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-container {
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Perfil Neuropsicológico</h1>
+        <p class="subtitle">Sistema de evaluación neuropsicológica con personalización de tests y visualización del perfil del neurodesarrollo basado en la teoría CHC</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>📋 Configuración Personalizada</h3>
+                <p>Selecciona solo los tests que necesitas mediante drag & drop</p>
+            </div>
+            <div class="feature">
+                <h3>🧠 Teoría CHC</h3>
+                <p>Tests organizados por dominios funcionales Cattell-Horn-Carroll</p>
+            </div>
+            <div class="feature">
+                <h3>📊 Visualización Clara</h3>
+                <p>Perfil neuropsicológico en formato gráfico con z-scores</p>
+            </div>
+            <div class="feature">
+                <h3>🔄 Múltiples Baterías</h3>
+                <p>WISC-V, ENFEN, NEPSY-II, PROLEC-R, TALE, TEMA-3 y más</p>
+            </div>
+        </div>
+        
+        <a href="config.html" class="btn-start">Comenzar Evaluación</a>
+    </div>
+</body>
+</html>

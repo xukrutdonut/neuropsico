@@ -1,0 +1,209 @@
+═══════════════════════════════════════════════════════════════════════
+  RESUMEN DE CAMBIOS - SISTEMA DE PUNTUACIONES ESTANDARIZADAS
+═══════════════════════════════════════════════════════════════════════
+
+✅ COMPLETADO: Modificación del sistema de percentiles a puntuaciones estandarizadas
+
+═══════════════════════════════════════════════════════════════════════
+CAMBIOS PRINCIPALES
+═══════════════════════════════════════════════════════════════════════
+
+1. ELIMINADO: Sistema basado en percentiles (0-100)
+2. IMPLEMENTADO: Sistema de puntuaciones estandarizadas reales
+
+═══════════════════════════════════════════════════════════════════════
+ESCALAS IMPLEMENTADAS
+═══════════════════════════════════════════════════════════════════════
+
+┌─────────────┬────────┬────────┬──────────────────────────────────┐
+│ Escala      │ Media  │ DE     │ Tests                            │
+├─────────────┼────────┼────────┼──────────────────────────────────┤
+│ CI          │ 100    │ 15     │ WISC-V (todos los índices)       │
+│ T           │ 50     │ 10     │ CSAT-R, CARAS-R, TALE, TEMA-3    │
+│ Escalar     │ 10     │ 3      │ ENFEN, NEPSY-II                  │
+│ V           │ 100    │ 15     │ PROLEC-R                         │
+└─────────────┴────────┴────────┴──────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════
+FÓRMULA DE CONVERSIÓN
+═══════════════════════════════════════════════════════════════════════
+
+z-score = (Puntuación - Media) / Desviación Estándar
+
+Ejemplos:
+  • CI 115:     (115 - 100) / 15 = +1.00
+  • T 60:       (60 - 50) / 10  = +1.00
+  • Escalar 13: (13 - 10) / 3   = +1.00
+
+═══════════════════════════════════════════════════════════════════════
+ARCHIVOS MODIFICADOS
+═══════════════════════════════════════════════════════════════════════
+
+1. index.html
+   ✓ Cambiados inputs de percentiles a puntuaciones estandarizadas
+   ✓ Añadido atributo data-scale a cada input
+   ✓ Añadida información de escalas (M y DE) para cada test/dominio
+   ✓ Actualizados rangos min/max apropiados por escala
+   ✓ Actualizados placeholders
+
+2. script.js
+   ✓ Eliminada función percentileToZScore()
+   ✓ Creada estructura standardScales
+   ✓ Creada función standardScoreToZScore()
+   ✓ Actualizada función calculateDomainAverages()
+   ✓ Mantenida función zScoreToPercentile() para display
+
+3. styles.css
+   ✓ Añadido estilo .scale-info
+   ✓ Añadido estilo .scale-tag
+   ✓ Actualizado .input-group con flex-wrap
+
+4. README.md
+   ✓ Documentación completa de escalas
+   ✓ Actualizadas instrucciones de uso
+   ✓ Añadida tabla de tests y sus escalas
+
+═══════════════════════════════════════════════════════════════════════
+ARCHIVOS NUEVOS
+═══════════════════════════════════════════════════════════════════════
+
+1. CAMBIOS-PUNTUACIONES-ESTANDARIZADAS.md
+   - Documentación técnica completa de los cambios
+   - Tabla detallada de todos los tests y sus escalas
+   - Ejemplos de validación
+
+2. test-conversiones.html
+   - Página de test para validar conversiones
+   - Prueba automática de 18 casos de conversión
+   - Verificación visual de resultados
+
+3. RESUMEN-CAMBIOS.txt
+   - Este archivo
+
+═══════════════════════════════════════════════════════════════════════
+TESTS POR DOMINIO CON SUS ESCALAS
+═══════════════════════════════════════════════════════════════════════
+
+INTELIGENCIA (WISC-V) - Todos CI (M=100, DE=15)
+  • CI Total
+  • Comprensión verbal
+  • Visoespacial
+  • Razonamiento fluido
+  • Memoria de trabajo
+  • Velocidad de procesamiento
+
+ATENCIÓN
+  • Atención sostenida (CSAT-R) - T (M=50, DE=10)
+  • Atención selectiva (CARAS-R) - T (M=50, DE=10)
+  • Atención alternante (ENFEN) - Escalar (M=10, DE=3)
+
+FUNCIONES EJECUTIVAS (ENFEN) - Todas Escalar (M=10, DE=3)
+  • Fluidez fonológica
+  • Fluidez semántica
+  • Planificación
+  • Interferencia
+
+LENGUAJE (NEPSY-II) - Todas Escalar (M=10, DE=3)
+  • Comprensión de instrucciones
+  • Procesamiento fonológico
+  • Velocidad de denominación
+
+LECTURA (PROLEC-R) - Todas V (M=100, DE=15)
+  • Precisión
+  • Velocidad
+  • Comprensión
+
+ESCRITURA (TALE) - T (M=50, DE=10)
+  • Ortografía (dictado)
+
+MATEMÁTICAS (TEMA-3) - Todas T (M=50, DE=10)
+  • Competencia matemática
+  • Resolución de problemas
+
+═══════════════════════════════════════════════════════════════════════
+VALIDACIÓN REALIZADA
+═══════════════════════════════════════════════════════════════════════
+
+✓ Tests unitarios de conversión JavaScript ejecutados correctamente
+✓ Todas las escalas verificadas matemáticamente
+✓ HTML validado con atributos data-scale correctos
+✓ CSS con nuevos estilos aplicados
+✓ README actualizado con documentación completa
+
+═══════════════════════════════════════════════════════════════════════
+FUNCIONALIDAD MANTENIDA
+═══════════════════════════════════════════════════════════════════════
+
+✓ Cálculo de promedios por dominio
+✓ Visualización gráfica (barras horizontales)
+✓ Display de z-scores y percentiles equivalentes
+✓ Función de impresión/PDF
+✓ Diseño responsivo
+✓ Dockerización completa
+✓ Todos los scripts (start.sh, stop.sh, healthcheck.sh)
+
+═══════════════════════════════════════════════════════════════════════
+VENTAJAS DEL NUEVO SISTEMA
+═══════════════════════════════════════════════════════════════════════
+
+1. Precisión científica: Usa puntuaciones estandarizadas reales
+2. Transparencia: Muestra claramente qué escala usa cada test
+3. Estándar profesional: Sigue prácticas neuropsicológicas estándar
+4. Educativo: Usuarios aprenden las escalas de cada test
+5. Comparabilidad: Diferentes escalas comparables vía z-scores
+6. Trazabilidad: Conversiones matemáticas explícitas
+
+═══════════════════════════════════════════════════════════════════════
+PRÓXIMOS PASOS SUGERIDOS (Opcionales)
+═══════════════════════════════════════════════════════════════════════
+
+□ Añadir normas por edad específicas
+□ Implementar más tests (ej: WISC-IV, WAIS-IV)
+□ Añadir funcionalidad de guardar perfiles
+□ Generar informes PDF con interpretación automática
+□ Añadir gráficos de comparación temporal
+□ Implementar base de datos para histórico
+
+═══════════════════════════════════════════════════════════════════════
+CÓMO USAR EL NUEVO SISTEMA
+═══════════════════════════════════════════════════════════════════════
+
+1. Iniciar la aplicación:
+   ./start.sh
+
+2. Abrir en navegador:
+   http://localhost:8090
+
+3. Introducir puntuaciones según la escala de cada test:
+   - WISC-V: Introducir CI (ej: 115)
+   - CSAT-R/CARAS-R: Introducir T (ej: 60)
+   - ENFEN/NEPSY-II: Introducir Escalar (ej: 13)
+   - PROLEC-R: Introducir V (ej: 115)
+   - TALE/TEMA-3: Introducir T (ej: 60)
+
+4. Hacer clic en "Generar Perfil"
+
+5. El sistema automáticamente:
+   - Convierte cada puntuación a z-score
+   - Calcula promedios por dominio
+   - Muestra gráfico con barras coloreadas
+   - Indica percentil equivalente
+
+═══════════════════════════════════════════════════════════════════════
+REFERENCIAS
+═══════════════════════════════════════════════════════════════════════
+
+• TEA Ediciones (Hogrefe): https://www.hogrefe-tea.com
+• Manuales técnicos de cada test
+• Normas de estandarización por edad
+
+═══════════════════════════════════════════════════════════════════════
+CONTACTO Y SOPORTE
+═══════════════════════════════════════════════════════════════════════
+
+Para dudas sobre las escalas de puntuación, consultar los manuales
+técnicos de cada test en la web de TEA Ediciones.
+
+═══════════════════════════════════════════════════════════════════════
+FIN DEL RESUMEN
+═══════════════════════════════════════════════════════════════════════

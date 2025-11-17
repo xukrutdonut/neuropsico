@@ -1,0 +1,132 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║      INICIO RÁPIDO - SISTEMA DE EVALUACIÓN NEUROPSICOLÓGICA v2.0           ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🚀 OPCIÓN 1: INICIO RÁPIDO (Recomendado)
+═══════════════════════════════════════════════════════════════════════════════
+
+En la terminal, ejecuta:
+
+    ./run-local.sh
+
+Luego abre tu navegador en:
+    
+    http://localhost:8080
+
+
+🚀 OPCIÓN 2: MANUAL
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Inicia un servidor web en el directorio:
+
+    python3 -m http.server 8080
+
+2. Abre tu navegador en:
+
+    http://localhost:8080
+
+
+🚀 OPCIÓN 3: ABRIR DIRECTAMENTE
+═══════════════════════════════════════════════════════════════════════════════
+
+Simplemente abre el archivo index.html directamente en tu navegador:
+
+    • Chrome: Arrastra index.html a una ventana de Chrome
+    • Firefox: Archivo → Abrir archivo → index.html
+    • Edge: Similar a Chrome
+    • Safari: Archivo → Abrir archivo → index.html
+
+
+📖 FLUJO DE USO
+═══════════════════════════════════════════════════════════════════════════════
+
+PASO 1: Bienvenida
+    └─→ Haz click en "Comenzar Evaluación"
+
+PASO 2: Configuración (config.html)
+    ├─→ COLUMNA IZQUIERDA: Biblioteca de tests por batería
+    │   • WISC-V, ENFEN, NEPSY-II, PROLEC-R, etc.
+    │
+    ├─→ COLUMNA DERECHA: Tu formulario personalizado por CHC
+    │   • g (Inteligencia General)
+    │   • Gc (Conocimiento Cristalizado)
+    │   • Gf (Razonamiento Fluido)
+    │   • Gv, Gwm, Gs, Ga, Grw, Gq
+    │
+    ├─→ ARRASTRA tests de izquierda a derecha
+    │   • Solo puedes soltar en el dominio CHC correcto
+    │   • Se ocultan de la biblioteca al añadirlos
+    │   • Puedes eliminarlos con el botón "×"
+    │
+    └─→ Haz click en "Continuar a Evaluación →"
+
+PASO 3: Evaluación (evaluation.html)
+    ├─→ Se genera formulario dinámico con tus tests
+    ├─→ Introduce las puntuaciones obtenidas
+    ├─→ Se guardan automáticamente al escribir
+    ├─→ Haz click en "Generar Perfil"
+    └─→ Visualiza el perfil del neurodesarrollo
+
+
+💡 CONSEJOS
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ Los datos se guardan en tu navegador (localStorage)
+✓ Puedes volver a "Configuración" para modificar tests
+✓ Usa "Limpiar Datos" para borrar puntuaciones
+✓ "Imprimir" genera una versión optimizada del perfil
+✓ No necesitas conexión a internet (funciona offline)
+✓ Tus datos nunca salen de tu dispositivo
+
+
+🎯 CARACTERÍSTICAS PRINCIPALES
+═══════════════════════════════════════════════════════════════════════════════
+
+• 50 tests de 8 baterías neuropsicológicas
+• Organización por teoría CHC (9 dominios)
+• Drag & drop intuitivo
+• Validación automática de rangos
+• Conversión a z-scores automática
+• Gráfico del perfil del neurodesarrollo
+• Diseño responsive (funciona en móviles)
+• Sin dependencias externas
+• Completamente gratuito
+
+
+📚 MÁS INFORMACIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+Lee la documentación completa:
+
+    GUIA-USO.md              → Guía paso a paso con screenshots
+    CAMBIOS-V2.md            → Detalles técnicos de implementación
+    ESTRUCTURA-ARCHIVOS.md   → Organización del proyecto
+    README.md                → Documentación general
+
+
+🆘 PROBLEMAS?
+═══════════════════════════════════════════════════════════════════════════════
+
+Puerto 8080 ocupado:
+    → Cambia el puerto: python3 -m http.server 8081
+    → O usa: ./run-local.sh (detecta y soluciona automáticamente)
+
+Los datos no se guardan:
+    → Verifica que tu navegador permite localStorage
+    → No uses modo incógnito/privado
+
+El drag & drop no funciona:
+    → Usa un navegador moderno (Chrome, Firefox, Edge, Safari)
+    → Actualiza tu navegador a la última versión
+
+El gráfico no se muestra:
+    → Verifica que script.js se carga correctamente
+    → Abre la consola del navegador (F12) para ver errores
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+¡Disfruta del sistema! 🎉
+

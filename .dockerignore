@@ -1,0 +1,20 @@
+# Archivos de configuración
+.env
+.env.local
+.env.*.local
+
+# Archivos de sistema
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Git
+.git/
+.gitignore
+
+# Node modules si los hubiera
+node_modules/
