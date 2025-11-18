@@ -243,6 +243,16 @@ function setupEventListeners() {
     document.getElementById('printBtn').addEventListener('click', () => {
         window.print();
     });
+    
+    // Botón exportar PDF
+    document.getElementById('exportPdfBtn').addEventListener('click', () => {
+        exportToPDF();
+    });
+    
+    // Botón exportar ASCII
+    document.getElementById('exportAsciiBtn').addEventListener('click', () => {
+        exportToAscii();
+    });
 }
 
 function generateProfile() {
@@ -305,4 +315,140 @@ function collectAllData() {
     });
     
     return allData;
+}
+
+// Exportar a PDF
+function exportToPDF() {
+    const canvas = document.getElementById('neuropsyChart');
+    if (!canvas || canvas.width === 0) {
+        alert('Por favor, genera primero el perfil neuropsicológico.');
+        return;
+    }
+    
+    // Crear un enlace temporal para descargar
+    const link = document.createElement('a');
+    link.download = `perfil_neuropsicologico_${new Date().toISOString().split('T')[0]}.png`;
+    link.href = canvas.toDataURL('image/png', 1.0);
+    link.click();
+}
+
+// Exportar a formato ASCII para copiar/pegar
+function exportToAscii() {
+    const data = collectAllData();
+    
+    if (data.length === 0) {
+        alert('No hay datos para exportar. Por favor, genera primero el perfil.');
+        return;
+    }
+    
+    let ascii = '';
+    ascii += '═══════════════════════════════════════════════════════════════\n';
+    ascii += '                 PERFIL NEUROPSICOLÓGICO\n';
+    ascii += '═══════════════════════════════════════════════════════════════\n\n';
+    
+    // Encabezado
+    ascii += 'Test                                  | Punt. | Escala | z-score\n';
+    ascii += '─────────────────────────────────────────────────────────────\n';
+    
+    // Datos por test
+    data.forEach(item => {
+        const testName = item.testName.padEnd(38, ' ');
+        const score = String(item.originalScore).padStart(5, ' ');
+        const scale = standardScales[item.scaleType].name.padEnd(6, ' ');
+        const z = item.zScore.toFixed(2).padStart(7, ' ');
+        ascii += `${testName}| ${score} | ${scale} | ${z}\n`;
+    });
+    
+    ascii += '\n';
+    ascii += '═══════════════════════════════════════════════════════════════\n';
+    ascii += '                    GRÁFICO ASCII\n';
+    ascii += '═══════════════════════════════════════════════════════════════\n\n';
+    
+    // Crear gráfico ASCII
+    const zMin = -3;
+    const zMax = 3;
+    const chartWidth = 60;
+    
+    // Encabezado del gráfico
+    ascii += '  Test                           ';
+    for (let z = zMin; z <= zMax; z++) {
+        if (z === 0) {
+            ascii += '|';
+        } else if (z === -2) {
+            ascii += '!';
+        } else {
+            ascii += '.';
+        }
+    }
+    ascii += '\n';
+    
+    ascii += '                                 ';
+    for (let z = zMin; z <= zMax; z++) {
+        ascii += z.toString()[0] || ' ';
+    }
+    ascii += '\n\n';
+    
+    // Dibujar cada test
+    data.forEach(item => {
+        const testName = item.testName.substring(0, 30).padEnd(30, ' ');
+        ascii += `  ${testName} `;
+        
+        // Crear la línea del gráfico
+        for (let z = zMin; z <= zMax; z += 0.1) {
+            const pos = Math.round((z - zMin) / (zMax - zMin) * chartWidth);
+            const itemPos = Math.round((item.zScore - zMin) / (zMax - zMin) * chartWidth);
+            
+            if (Math.abs(pos - itemPos) < 1) {
+                ascii += '●';
+            } else if (Math.abs(z) < 0.05) {
+                ascii += '│';
+            } else if (Math.abs(z + 2) < 0.05) {
+                ascii += '┊';
+            } else {
+                ascii += '─';
+            }
+        }
+        
+        ascii += ` ${item.zScore.toFixed(2)}\n`;
+    });
+    
+    ascii += '\n';
+    ascii += 'Leyenda:\n';
+    ascii += '  ● = Puntuación del test\n';
+    ascii += '  │ = Media (z=0)\n';
+    ascii += '  ┊ = Límite clínico (z=-2)\n';
+    ascii += '\n';
+    ascii += `Generado: ${new Date().toLocaleString('es-ES')}\n`;
+    ascii += '═══════════════════════════════════════════════════════════════\n';
+    
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(ascii).then(() => {
+        alert('¡Perfil ASCII copiado al portapapeles!\n\nPuedes pegarlo en cualquier documento de texto.');
+    }).catch(err => {
+        // Si falla el clipboard, mostrar en un modal
+        const textarea = document.createElement('textarea');
+        textarea.value = ascii;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '50%';
+        textarea.style.left = '50%';
+        textarea.style.transform = 'translate(-50%, -50%)';
+        textarea.style.width = '80%';
+        textarea.style.height = '80%';
+        textarea.style.zIndex = '10000';
+        textarea.style.fontFamily = 'monospace';
+        textarea.style.fontSize = '12px';
+        textarea.style.padding = '20px';
+        textarea.style.border = '2px solid #333';
+        textarea.style.borderRadius = '8px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        alert('Copia el texto del cuadro que aparecerá a continuación');
+        
+        // Cerrar al hacer click fuera
+        setTimeout(() => {
+            textarea.addEventListener('blur', () => {
+                document.body.removeChild(textarea);
+            });
+        }, 100);
+    });
 }

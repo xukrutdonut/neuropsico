@@ -206,15 +206,15 @@ function drawLineChart(data) {
     }
     
     // Dibujar título
-    ctx.font = 'bold 24px Arial';
+    ctx.font = 'bold 28px Arial';
     ctx.fillStyle = '#333';
     ctx.textAlign = 'center';
-    ctx.fillText('PERFIL NEUROPSICOLÓGICO', width / 2, 35);
+    ctx.fillText('PERFIL NEUROPSICOLÓGICO', width / 2, 40);
     
     // Dibujar líneas verticales de referencia (z-scores, ahora en eje X)
     ctx.strokeStyle = '#ddd';
     ctx.lineWidth = 1;
-    ctx.font = '12px Arial';
+    ctx.font = '14px Arial';
     ctx.fillStyle = '#666';
     ctx.textAlign = 'center';
     
@@ -239,14 +239,14 @@ function drawLineChart(data) {
         
         // Etiqueta del eje X (abajo)
         ctx.fillStyle = z === -2 ? '#ff0000' : '#666';
-        ctx.font = z === -2 ? 'bold 12px Arial' : '12px Arial';
-        ctx.fillText(z.toFixed(1), x, height - margin.bottom + 20);
+        ctx.font = z === -2 ? 'bold 15px Arial' : '14px Arial';
+        ctx.fillText(z.toFixed(1), x, height - margin.bottom + 25);
     }
     
     ctx.setLineDash([]);
     
     // Etiqueta del eje X
-    ctx.font = 'bold 14px Arial';
+    ctx.font = 'bold 16px Arial';
     ctx.fillStyle = '#333';
     ctx.textAlign = 'center';
     ctx.fillText('z-score', width / 2, height - 10);
@@ -286,20 +286,20 @@ function drawLineChart(data) {
         ctx.stroke();
         
         // Valor del z-score a la derecha del punto
-        ctx.font = 'bold 10px Arial';
+        ctx.font = 'bold 12px Arial';
         ctx.fillStyle = '#333';
         ctx.textAlign = 'left';
-        ctx.fillText(item.zScore.toFixed(2), x + 8, y + 4);
+        ctx.fillText(item.zScore.toFixed(2), x + 10, y + 4);
         
         // Puntuación original a la derecha
-        ctx.font = '9px Arial';
+        ctx.font = '11px Arial';
         ctx.fillStyle = '#666';
         const scaleLabel = standardScales[item.scaleType].name;
-        ctx.fillText(`${scaleLabel}=${item.originalScore}`, x + 8, y + 15);
+        ctx.fillText(`${scaleLabel}=${item.originalScore}`, x + 10, y + 16);
     });
     
     // Dibujar etiquetas de los tests (a la izquierda, sin rotar)
-    ctx.font = '11px Arial';
+    ctx.font = '13px Arial';
     ctx.fillStyle = '#333';
     ctx.textAlign = 'right';
     
@@ -317,9 +317,9 @@ function drawLineChart(data) {
     
     // Leyenda de la línea roja
     ctx.fillStyle = '#ff0000';
-    ctx.font = 'bold 11px Arial';
+    ctx.font = 'bold 13px Arial';
     ctx.textAlign = 'left';
-    ctx.fillText('z = -2 (Límite clínico)', width - margin.right - 150, 50);
+    ctx.fillText('z = -2 (Límite clínico)', width - margin.right - 160, 55);
 }
 
 function clearForm() {

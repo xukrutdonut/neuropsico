@@ -200,11 +200,13 @@ header h1 {
 
 .input-wrapper input {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border: 2px solid #dee2e6;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: 500;
     transition: all 0.2s ease;
+    min-height: 45px;
 }
 
 .input-wrapper input:focus {

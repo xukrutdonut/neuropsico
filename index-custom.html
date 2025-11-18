@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Personalizada - Perfil Neuropsicológico</title>
+    <link rel="stylesheet" href="styles-custom.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Perfil Neuropsicológico Personalizado</h1>
+            <p class="subtitle">Configura tu formulario personalizado arrastrando las pruebas que necesites</p>
+        </header>
+
+        <!-- Pantalla 1: Configuración del formulario -->
+        <div id="screen-config" class="screen active">
+            <div class="config-content">
+                <div class="tests-library">
+                    <h2>Biblioteca de Pruebas</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchTests" placeholder="Buscar prueba...">
+                    </div>
+                    <div id="testsLibraryContent" class="library-content">
+                        <!-- Tests will be populated here -->
+                    </div>
+                </div>
+
+                <div class="custom-form">
+                    <h2>Tu Formulario Personalizado</h2>
+                    <div class="form-info">
+                        <p>Arrastra aquí las pruebas que desees incluir</p>
+                        <p class="info-text">Las pruebas se agruparán automáticamente por dominios CHC</p>
+                    </div>
+                    <div id="customFormContent" class="form-content">
+                        <div class="empty-state">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <path d="M32 8L56 24V48L32 64L8 48V24L32 8Z" stroke="#ccc" stroke-width="2" fill="none"/>
+                                <path d="M32 24V40M24 32H40" stroke="#ccc" stroke-width="2"/>
+                            </svg>
+                            <p>Arrastra pruebas aquí para comenzar</p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="clearFormBtn" class="btn btn-secondary">Limpiar Todo</button>
+                        <button id="continueBtn" class="btn btn-primary">Continuar al Formulario</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla 2: Formulario de datos y perfil -->
+        <div id="screen-profile" class="screen">
+            <div class="profile-header">
+                <button id="backToConfigBtn" class="btn btn-back">← Volver a Configuración</button>
+                <h2>Introduce las Puntuaciones</h2>
+            </div>
+            
+            <div class="profile-content">
+                <div class="data-entry-section">
+                    <div id="dataEntryForm" class="data-form">
+                        <!-- Form inputs will be generated here -->
+                    </div>
+                    <div class="form-actions">
+                        <button id="calculateBtn" class="btn btn-primary">Calcular Perfil</button>
+                        <button id="clearDataBtn" class="btn btn-secondary">Limpiar Datos</button>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3>Perfil Neuropsicológico</h3>
+                    <div id="resultsArea" class="results-area">
+                        <div class="empty-state">
+                            <p>Introduce las puntuaciones y calcula el perfil</p>
+                        </div>
+                    </div>
+                    <div class="export-actions">
+                        <button id="exportPdfBtn" class="btn btn-export">Exportar PDF</button>
+                        <button id="exportTxtBtn" class="btn btn-export">Exportar TXT (ASCII)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-custom.js"></script>
+</body>
+</html>
