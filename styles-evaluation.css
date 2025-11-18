@@ -21,19 +21,19 @@ body {
 header {
     background: #0073aa;
     color: white;
-    padding: 60px 40px;
+    padding: 30px 40px;
     border-bottom: 1px solid #e2e8f0;
 }
 
 header h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
     font-weight: 700;
     letter-spacing: -0.02em;
 }
 
 .subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     opacity: 0.95;
     font-weight: 400;
 }
