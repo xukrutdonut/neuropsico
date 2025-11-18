@@ -1,15 +1,15 @@
-// Mapeo de baterías a URLs de Hogrefe TEA Ediciones
+// Mapeo de baterías a URLs oficiales (Pearson Clinical y Hogrefe TEA)
 const teaEdicionesUrls = {
-    'WISC-V': 'https://www.hogrefe-tea.com/public/producto/wisc-v',
-    'WISC-IV': 'https://www.hogrefe-tea.com/public/producto/wisc-iv',
-    'WPPSI-III': 'https://www.hogrefe-tea.com/public/producto/wppsi-iii',
-    'NEPSY-II': 'https://www.hogrefe-tea.com/public/producto/nepsy-ii',
-    'ENFEN': 'https://www.hogrefe-tea.com/public/producto/enfen',
-    'PROLEC-R': 'https://www.hogrefe-tea.com/public/producto/prolec-r',
-    'TALE': 'https://www.hogrefe-tea.com/public/producto/tale',
-    'TEMA-3': 'https://www.hogrefe-tea.com/public/producto/tema-3',
-    'CSAT-R': 'https://www.hogrefe-tea.com/public/producto/csat-r',
-    'CARAS-R': 'https://www.hogrefe-tea.com/public/producto/caras-r'
+    'WISC-V': 'https://www.pearsonclinical.es/wisc-v-escala-de-inteligencia-de-wechsler-para-ninos-v',
+    'WISC-IV': 'https://www.pearsonclinical.es/wisc-iv-escala-de-inteligencia-de-wechsler-para-ninos-iv',
+    'WPPSI-III': 'https://www.pearsonclinical.es/wppsi-iii-escala-de-inteligencia-de-wechsler-para-preescolar-y-primaria-iii',
+    'NEPSY-II': 'https://www.hogrefe-tea.com/public/catalogo?search=nepsy',
+    'ENFEN': 'https://www.hogrefe-tea.com/public/catalogo?search=enfen',
+    'PROLEC-R': 'https://www.hogrefe-tea.com/public/catalogo?search=prolec',
+    'TALE': 'https://www.hogrefe-tea.com/public/catalogo?search=tale',
+    'TEMA-3': 'https://www.hogrefe-tea.com/public/catalogo?search=tema-3',
+    'CSAT-R': 'https://www.hogrefe-tea.com/public/catalogo?search=csat',
+    'CARAS-R': 'https://www.hogrefe-tea.com/public/catalogo?search=caras'
 };
 
 // Cargar configuración y construir formulario
