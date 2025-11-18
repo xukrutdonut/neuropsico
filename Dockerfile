@@ -10,6 +10,7 @@ COPY index.html /usr/share/nginx/html/index.html
 # Copiar archivos de la versión 2.0 (Personalizable - RECOMENDADA)
 COPY config.html /usr/share/nginx/html/
 COPY evaluation.html /usr/share/nginx/html/
+COPY bibliografia.html /usr/share/nginx/html/
 COPY styles-config.css /usr/share/nginx/html/
 COPY styles-evaluation.css /usr/share/nginx/html/
 COPY script-config.js /usr/share/nginx/html/
