@@ -183,11 +183,11 @@ function drawLineChart(data) {
     const canvas = document.getElementById('neuropsyChart');
     const ctx = canvas.getContext('2d');
     
-    // Configuración del canvas
+    // Configuración del canvas (girado 90°: ahora horizontal)
     const width = canvas.width = 1400;
     const height = canvas.height = 700;
     
-    const margin = { top: 60, right: 50, bottom: 120, left: 80 };
+    const margin = { top: 60, right: 100, bottom: 60, left: 200 };
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
     
@@ -198,11 +198,11 @@ function drawLineChart(data) {
     const zMin = -3;
     const zMax = 3;
     const numTests = data.length;
-    const xStep = chartWidth / (numTests + 1);
+    const yStep = chartHeight / (numTests + 1);
     
-    // Función para convertir z-score a coordenada y
-    function zToY(z) {
-        return margin.top + chartHeight - ((z - zMin) / (zMax - zMin)) * chartHeight;
+    // Función para convertir z-score a coordenada x (ahora horizontal)
+    function zToX(z) {
+        return margin.left + ((z - zMin) / (zMax - zMin)) * chartWidth;
     }
     
     // Dibujar título
@@ -211,15 +211,15 @@ function drawLineChart(data) {
     ctx.textAlign = 'center';
     ctx.fillText('PERFIL NEUROPSICOLÓGICO', width / 2, 35);
     
-    // Dibujar líneas horizontales de referencia (z-scores)
+    // Dibujar líneas verticales de referencia (z-scores, ahora en eje X)
     ctx.strokeStyle = '#ddd';
     ctx.lineWidth = 1;
     ctx.font = '12px Arial';
     ctx.fillStyle = '#666';
-    ctx.textAlign = 'right';
+    ctx.textAlign = 'center';
     
     for (let z = zMin; z <= zMax; z++) {
-        const y = zToY(z);
+        const x = zToX(z);
         
         // Línea especial en z = -2 (roja para patología)
         if (z === -2) {
@@ -233,36 +233,32 @@ function drawLineChart(data) {
         }
         
         ctx.beginPath();
-        ctx.moveTo(margin.left, y);
-        ctx.lineTo(width - margin.right, y);
+        ctx.moveTo(x, margin.top);
+        ctx.lineTo(x, height - margin.bottom);
         ctx.stroke();
         
-        // Etiqueta del eje Y
+        // Etiqueta del eje X (abajo)
         ctx.fillStyle = z === -2 ? '#ff0000' : '#666';
         ctx.font = z === -2 ? 'bold 12px Arial' : '12px Arial';
-        ctx.fillText(z.toFixed(1), margin.left - 10, y + 4);
+        ctx.fillText(z.toFixed(1), x, height - margin.bottom + 20);
     }
     
     ctx.setLineDash([]);
     
-    // Etiqueta del eje Y
-    ctx.save();
-    ctx.translate(20, height / 2);
-    ctx.rotate(-Math.PI / 2);
+    // Etiqueta del eje X
     ctx.font = 'bold 14px Arial';
     ctx.fillStyle = '#333';
     ctx.textAlign = 'center';
-    ctx.fillText('z-score', 0, 0);
-    ctx.restore();
+    ctx.fillText('z-score', width / 2, height - 10);
     
-    // Dibujar los puntos y líneas
+    // Dibujar los puntos y líneas (ahora horizontal)
     ctx.strokeStyle = '#4A90E2';
     ctx.lineWidth = 2;
     ctx.beginPath();
     
     data.forEach((item, index) => {
-        const x = margin.left + (index + 1) * xStep;
-        const y = zToY(item.zScore);
+        const x = zToX(item.zScore);
+        const y = margin.top + (index + 1) * yStep;
         
         if (index === 0) {
             ctx.moveTo(x, y);
@@ -275,8 +271,8 @@ function drawLineChart(data) {
     
     // Dibujar los puntos
     data.forEach((item, index) => {
-        const x = margin.left + (index + 1) * xStep;
-        const y = zToY(item.zScore);
+        const x = zToX(item.zScore);
+        const y = margin.top + (index + 1) * yStep;
         
         // Círculo
         ctx.fillStyle = '#4A90E2';
@@ -289,33 +285,29 @@ function drawLineChart(data) {
         ctx.lineWidth = 2;
         ctx.stroke();
         
-        // Valor del z-score sobre el punto
+        // Valor del z-score a la derecha del punto
         ctx.font = 'bold 10px Arial';
         ctx.fillStyle = '#333';
-        ctx.textAlign = 'center';
-        ctx.fillText(item.zScore.toFixed(2), x, y - 12);
+        ctx.textAlign = 'left';
+        ctx.fillText(item.zScore.toFixed(2), x + 8, y + 4);
         
-        // Puntuación original debajo del punto
+        // Puntuación original a la derecha
         ctx.font = '9px Arial';
         ctx.fillStyle = '#666';
         const scaleLabel = standardScales[item.scaleType].name;
-        ctx.fillText(`${scaleLabel}=${item.originalScore}`, x, y + 20);
+        ctx.fillText(`${scaleLabel}=${item.originalScore}`, x + 8, y + 15);
     });
     
-    // Dibujar etiquetas de los tests (rotadas)
+    // Dibujar etiquetas de los tests (a la izquierda, sin rotar)
     ctx.font = '11px Arial';
     ctx.fillStyle = '#333';
     ctx.textAlign = 'right';
     
     data.forEach((item, index) => {
-        const x = margin.left + (index + 1) * xStep;
-        const y = height - margin.bottom + 10;
+        const x = margin.left - 10;
+        const y = margin.top + (index + 1) * yStep;
         
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(-Math.PI / 4);
-        ctx.fillText(item.testName, 0, 0);
-        ctx.restore();
+        ctx.fillText(item.testName, x, y + 4);
     });
     
     // Dibujar borde del gráfico

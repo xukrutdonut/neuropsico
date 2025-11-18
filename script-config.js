@@ -17,6 +17,8 @@ function initializeDragAndDrop() {
     testItems.forEach(item => {
         item.addEventListener('dragstart', handleDragStart);
         item.addEventListener('dragend', handleDragEnd);
+        // Añadir doble click para agregar
+        item.addEventListener('dblclick', handleTestDoubleClick);
     });
     
     // Configurar zonas de drop
@@ -107,6 +109,11 @@ function addTestToDropZone(dropZone, testData) {
         <span class="test-scale">${getScaleName(testData.scale)}</span>
         <button class="remove-btn" onclick="removeTest('${testData.test}')">×</button>
     `;
+    
+    // Añadir doble click para quitar
+    droppedItem.addEventListener('dblclick', () => {
+        removeTest(testData.test);
+    });
     
     dropZone.appendChild(droppedItem);
 }
@@ -249,3 +256,46 @@ function clearConfiguration() {
     // Actualizar zonas
     updateDropZones();
 }
+
+// Manejar doble click en test de la biblioteca (añadir)
+function handleTestDoubleClick(e) {
+    const testItem = e.currentTarget;
+    
+    // Evitar que se agregue si ya está oculto
+    if (testItem.classList.contains('hidden')) {
+        return;
+    }
+    
+    const testData = {
+        test: testItem.dataset.test,
+        domain: testItem.dataset.domain,
+        chc: testItem.dataset.chc,
+        scale: testItem.dataset.scale,
+        battery: testItem.dataset.battery,
+        name: testItem.querySelector('.test-name').textContent
+    };
+    
+    // Verificar que no esté ya añadido
+    if (selectedTests.some(t => t.test === testData.test)) {
+        return;
+    }
+    
+    // Añadir al array de tests seleccionados
+    selectedTests.push(testData);
+    
+    // Buscar la zona de drop correspondiente
+    const dropZone = document.querySelector(`.drop-zone[data-chc="${testData.chc}"]`);
+    if (dropZone) {
+        addTestToDropZone(dropZone, testData);
+    }
+    
+    // Ocultar el test de la biblioteca
+    hideTestFromLibrary(testData.test);
+    
+    // Guardar configuración
+    saveConfiguration();
+    
+    // Actualizar zonas
+    updateDropZones();
+}
+
