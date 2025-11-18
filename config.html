@@ -25,14 +25,52 @@
                 <h2>Biblioteca de Tests</h2>
                 <p class="column-subtitle">Organizados por batería comercial</p>
                 
+                <!-- Controles de búsqueda y filtrado -->
+                <div class="library-controls">
+                    <div class="search-container">
+                        <input type="text" 
+                               id="searchTests" 
+                               placeholder="🔍 Buscar tests por nombre o batería..." 
+                               class="search-input">
+                    </div>
+                    
+                    <div class="age-filter-container">
+                        <label for="ageFilter" class="age-filter-label">Filtrar por edad:</label>
+                        <div class="age-filter-inputs">
+                            <input type="number" 
+                                   id="ageFilterMin" 
+                                   placeholder="Edad mín." 
+                                   min="0" 
+                                   max="99"
+                                   class="age-input">
+                            <span class="age-separator">-</span>
+                            <input type="number" 
+                                   id="ageFilterMax" 
+                                   placeholder="Edad máx." 
+                                   min="0" 
+                                   max="99"
+                                   class="age-input">
+                            <button id="applyAgeFilter" class="btn-filter">Aplicar</button>
+                            <button id="clearAgeFilter" class="btn-filter btn-clear">Limpiar</button>
+                        </div>
+                        <div id="ageFilterStatus" class="age-filter-status"></div>
+                    </div>
+                </div>
+                
                 <div class="test-library">
                     <!-- WISC-V -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.pearsonclinical.es/wisc-v-escala-de-inteligencia-de-wechsler-para-ninos-v" target="_blank" rel="noopener noreferrer" title="Ver información en Pearson Clinical">
-                                WISC-V (Escala Wechsler)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="16">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.pearsonclinical.es/wisc-v-escala-de-inteligencia-de-wechsler-para-ninos-v" target="_blank" rel="noopener noreferrer" title="Ver información en Pearson Clinical">
+                                    WISC-V (Escala Wechsler)
+                                </a>
+                                <span class="age-range">6-16 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="WISC-V" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         
                         <div class="battery-section">
                             <h4 class="section-title">Índices Principales</h4>
@@ -270,12 +308,18 @@
                     </div>
 
                     <!-- WISC-IV -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.pearsonclinical.es/wisc-iv-escala-de-inteligencia-de-wechsler-para-ninos-iv" target="_blank" rel="noopener noreferrer" title="Ver información en Pearson Clinical">
-                                WISC-IV (Escala Wechsler)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="16">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.pearsonclinical.es/wisc-iv-escala-de-inteligencia-de-wechsler-para-ninos-iv" target="_blank" rel="noopener noreferrer" title="Ver información en Pearson Clinical">
+                                    WISC-IV (Escala Wechsler)
+                                </a>
+                                <span class="age-range">6-16 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="WISC-IV" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         
                         <div class="battery-section">
                             <h4 class="section-title">Índices Principales</h4>
@@ -499,12 +543,18 @@
                     </div>
 
                     <!-- WPPSI-III -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.pearsonclinical.es/wppsi-iii-escala-de-inteligencia-de-wechsler-para-preescolar-y-primaria-iii" target="_blank" rel="noopener noreferrer" title="Ver información en Pearson Clinical">
-                                WPPSI-III (Escala Wechsler Preescolar)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="2" data-age-max="7">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.pearsonclinical.es/wppsi-iii-escala-de-inteligencia-de-wechsler-para-preescolar-y-primaria-iii" target="_blank" rel="noopener noreferrer" title="Ver información en Pearson Clinical">
+                                    WPPSI-III (Escala Wechsler Preescolar)
+                                </a>
+                                <span class="age-range">2-7 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="WPPSI-III" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         
                         <div class="battery-section">
                             <h4 class="section-title">Índices Principales</h4>
@@ -694,12 +744,18 @@
                     </div>
 
                     <!-- CSAT-R -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/CSAT--TAREA-DE-ATENCION-SOSTENIDA-EN-LA-INFANCIA" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                CSAT-R (Atención Sostenida)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="11">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/CSAT--TAREA-DE-ATENCION-SOSTENIDA-EN-LA-INFANCIA" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    CSAT-R (Atención Sostenida)
+                                </a>
+                                <span class="age-range">6-11 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="CSAT-R" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         <div class="battery-section">
                             <div class="test-item" draggable="true" 
                                  data-test="csat_aciertos" 
@@ -725,12 +781,18 @@
                     </div>
 
                     <!-- CARAS-R -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/CARAS-R-Test-de-Percepcion-de-Diferencias---Revisado" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                CARAS-R (Atención Selectiva)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="18">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/CARAS-R-Test-de-Percepcion-de-Diferencias---Revisado" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    CARAS-R (Atención Selectiva)
+                                </a>
+                                <span class="age-range">6-18 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="CARAS-R" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         <div class="battery-section">
                             <div class="test-item" draggable="true" 
                                  data-test="caras_aciertos" 
@@ -766,12 +828,18 @@
                     </div>
 
                     <!-- ENFEN -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/ENFEN--EVALUACION-NEUROPSICOLOGICA-DE-LAS-FUNCIONES-EJECUTIVAS-EN-NINOS" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                ENFEN (Funciones Ejecutivas)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="12">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/ENFEN--EVALUACION-NEUROPSICOLOGICA-DE-LAS-FUNCIONES-EJECUTIVAS-EN-NINOS" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    ENFEN (Funciones Ejecutivas)
+                                </a>
+                                <span class="age-range">6-12 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="ENFEN" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         <div class="battery-section">
                             <div class="test-item" draggable="true" 
                                  data-test="fluidez_fonologica" 
@@ -837,12 +905,18 @@
                     </div>
 
                     <!-- NEPSY-II -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/NEPSY-II--EVALUACION-NEUROPSICOLOGICA-INFANTIL" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                NEPSY-II (Evaluación Neuropsicológica)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="3" data-age-max="16">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/NEPSY-II--EVALUACION-NEUROPSICOLOGICA-INFANTIL" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    NEPSY-II (Evaluación Neuropsicológica)
+                                </a>
+                                <span class="age-range">3-16 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="NEPSY-II" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         
                         <div class="battery-section">
                             <h4 class="section-title">Atención y Función Ejecutiva</h4>
@@ -1160,12 +1234,18 @@
                     </div>
 
                     <!-- PROLEC-R -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/PROLEC-R-Bateria-de-Evaluacion-de-los-Procesos-Lectores--Revisad" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                PROLEC-R (Lectura)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="12">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/PROLEC-R-Bateria-de-Evaluacion-de-los-Procesos-Lectores--Revisad" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    PROLEC-R (Lectura)
+                                </a>
+                                <span class="age-range">6-12 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="PROLEC-R" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         <div class="battery-section">
                             <div class="test-item" draggable="true" 
                                  data-test="nombre_letras" 
@@ -1261,12 +1341,18 @@
                     </div>
 
                     <!-- TALE -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/TALE--TEST-DE-ANALISIS-DE-LECTOESCRITURA" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                TALE (Escritura)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="6" data-age-max="10">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/TALE--TEST-DE-ANALISIS-DE-LECTOESCRITURA" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    TALE (Escritura)
+                                </a>
+                                <span class="age-range">6-10 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="TALE" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         <div class="battery-section">
                             <div class="test-item" draggable="true" 
                                  data-test="ortografia_natural" 
@@ -1292,12 +1378,18 @@
                     </div>
 
                     <!-- TEMA-3 -->
-                    <div class="battery-group">
-                        <h3 class="battery-title">
-                            <a href="https://www.hogrefe-tea.com/public/catalogo/producto/tema-3-test-de-competencia-matematica-basica-3" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
-                                TEMA-3 (Matemáticas)
-                            </a>
-                        </h3>
+                    <div class="battery-group" data-age-min="3" data-age-max="8">
+                        <div class="battery-header">
+                            <h3 class="battery-title">
+                                <a href="https://www.hogrefe-tea.com/public/catalogo/producto/tema-3-test-de-competencia-matematica-basica-3" target="_blank" rel="noopener noreferrer" title="Ver información en Hogrefe TEA Ediciones">
+                                    TEMA-3 (Matemáticas)
+                                </a>
+                                <span class="age-range">3-8 años</span>
+                            </h3>
+                            <button class="btn-add-all" data-battery="TEMA-3" title="Añadir todas las subpruebas de esta batería">
+                                ➕ Añadir todos
+                            </button>
+                        </div>
                         <div class="battery-section">
                             <div class="test-item" draggable="true" 
                                  data-test="comp_matematica" 

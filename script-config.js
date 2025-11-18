@@ -232,6 +232,40 @@ function setupEventListeners() {
         saveConfiguration();
         window.location.href = 'evaluation.html';
     });
+    
+    // Búsqueda de tests
+    const searchInput = document.getElementById('searchTests');
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+    }
+    
+    // Filtro de edad
+    const applyAgeFilter = document.getElementById('applyAgeFilter');
+    const clearAgeFilter = document.getElementById('clearAgeFilter');
+    
+    if (applyAgeFilter) {
+        applyAgeFilter.addEventListener('click', handleAgeFilter);
+    }
+    
+    if (clearAgeFilter) {
+        clearAgeFilter.addEventListener('click', handleClearAgeFilter);
+    }
+    
+    // También aplicar filtro con Enter
+    const ageInputs = document.querySelectorAll('.age-input');
+    ageInputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleAgeFilter();
+            }
+        });
+    });
+    
+    // Botones "Añadir todos"
+    const addAllButtons = document.querySelectorAll('.btn-add-all');
+    addAllButtons.forEach(button => {
+        button.addEventListener('click', handleAddAllTests);
+    });
 }
 
 function clearConfiguration() {
@@ -297,5 +331,178 @@ function handleTestDoubleClick(e) {
     
     // Actualizar zonas
     updateDropZones();
+}
+
+// ============ NUEVAS FUNCIONALIDADES ============
+
+// Función de búsqueda
+function handleSearch(e) {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    const testItems = document.querySelectorAll('.test-item');
+    const batteryGroups = document.querySelectorAll('.battery-group');
+    
+    if (searchTerm === '') {
+        // Si no hay búsqueda, mostrar todos
+        testItems.forEach(item => {
+            item.classList.remove('search-no-match');
+        });
+        batteryGroups.forEach(group => {
+            group.style.display = '';
+        });
+        return;
+    }
+    
+    // Buscar en tests
+    testItems.forEach(item => {
+        const testName = item.querySelector('.test-name').textContent.toLowerCase();
+        const battery = item.dataset.battery ? item.dataset.battery.toLowerCase() : '';
+        
+        if (testName.includes(searchTerm) || battery.includes(searchTerm)) {
+            item.classList.remove('search-no-match');
+        } else {
+            item.classList.add('search-no-match');
+        }
+    });
+    
+    // Ocultar baterías que no tienen tests visibles
+    batteryGroups.forEach(group => {
+        const visibleTests = group.querySelectorAll('.test-item:not(.hidden):not(.search-no-match)');
+        if (visibleTests.length === 0) {
+            group.style.display = 'none';
+        } else {
+            group.style.display = '';
+        }
+    });
+}
+
+// Función de filtro por edad
+function handleAgeFilter() {
+    const minAge = parseInt(document.getElementById('ageFilterMin').value);
+    const maxAge = parseInt(document.getElementById('ageFilterMax').value);
+    const statusDiv = document.getElementById('ageFilterStatus');
+    
+    if (isNaN(minAge) && isNaN(maxAge)) {
+        alert('Por favor, introduce al menos una edad (mínima o máxima)');
+        return;
+    }
+    
+    const batteryGroups = document.querySelectorAll('.battery-group');
+    let filteredCount = 0;
+    let totalCount = batteryGroups.length;
+    
+    batteryGroups.forEach(group => {
+        const groupMinAge = parseInt(group.dataset.ageMin);
+        const groupMaxAge = parseInt(group.dataset.ageMax);
+        
+        let shouldShow = true;
+        
+        // Si hay edad mínima, verificar que la batería cubra edades >= minAge
+        if (!isNaN(minAge)) {
+            // La batería debe tener un rango que incluya o esté por encima de minAge
+            if (groupMaxAge < minAge) {
+                shouldShow = false;
+            }
+        }
+        
+        // Si hay edad máxima, verificar que la batería cubra edades <= maxAge
+        if (!isNaN(maxAge)) {
+            // La batería debe tener un rango que incluya o esté por debajo de maxAge
+            if (groupMinAge > maxAge) {
+                shouldShow = false;
+            }
+        }
+        
+        if (shouldShow) {
+            group.classList.remove('filtered-out');
+            filteredCount++;
+        } else {
+            group.classList.add('filtered-out');
+        }
+    });
+    
+    // Actualizar mensaje de estado
+    const ageRangeText = !isNaN(minAge) && !isNaN(maxAge) 
+        ? `${minAge}-${maxAge} años`
+        : !isNaN(minAge)
+            ? `${minAge}+ años`
+            : `0-${maxAge} años`;
+    
+    statusDiv.textContent = `Mostrando ${filteredCount} de ${totalCount} baterías para ${ageRangeText}`;
+    statusDiv.classList.add('active');
+}
+
+// Limpiar filtro de edad
+function handleClearAgeFilter() {
+    document.getElementById('ageFilterMin').value = '';
+    document.getElementById('ageFilterMax').value = '';
+    
+    const batteryGroups = document.querySelectorAll('.battery-group');
+    batteryGroups.forEach(group => {
+        group.classList.remove('filtered-out');
+    });
+    
+    const statusDiv = document.getElementById('ageFilterStatus');
+    statusDiv.textContent = '';
+    statusDiv.classList.remove('active');
+}
+
+// Añadir todos los tests de una batería
+function handleAddAllTests(e) {
+    const battery = e.currentTarget.dataset.battery;
+    const batteryGroup = e.currentTarget.closest('.battery-group');
+    
+    // Obtener todos los tests de esta batería que no estén ocultos
+    const testItems = batteryGroup.querySelectorAll('.test-item:not(.hidden)');
+    
+    if (testItems.length === 0) {
+        alert('No hay tests disponibles en esta batería');
+        return;
+    }
+    
+    let addedCount = 0;
+    let skippedCount = 0;
+    
+    testItems.forEach(item => {
+        const testData = {
+            test: item.dataset.test,
+            domain: item.dataset.domain,
+            chc: item.dataset.chc,
+            scale: item.dataset.scale,
+            battery: item.dataset.battery,
+            name: item.querySelector('.test-name').textContent
+        };
+        
+        // Verificar que no esté ya añadido
+        if (!selectedTests.some(t => t.test === testData.test)) {
+            // Añadir al array de tests seleccionados
+            selectedTests.push(testData);
+            
+            // Buscar la zona de drop correspondiente
+            const dropZone = document.querySelector(`.drop-zone[data-chc="${testData.chc}"]`);
+            if (dropZone) {
+                addTestToDropZone(dropZone, testData);
+            }
+            
+            // Ocultar el test de la biblioteca
+            hideTestFromLibrary(testData.test);
+            
+            addedCount++;
+        } else {
+            skippedCount++;
+        }
+    });
+    
+    // Guardar configuración
+    if (addedCount > 0) {
+        saveConfiguration();
+        updateDropZones();
+    }
+    
+    // Mostrar mensaje
+    let message = `Se añadieron ${addedCount} test(s) de ${battery}`;
+    if (skippedCount > 0) {
+        message += ` (${skippedCount} ya estaban añadidos)`;
+    }
+    alert(message);
 }
 
