@@ -52,6 +52,12 @@ COPY COMPLETADO-XBA-FASE2.md /usr/share/nginx/html/docs/
 COPY BIBLIOGRAFIA-XBA.md /usr/share/nginx/html/docs/
 COPY INFORME_NP_EJEMPLO.pdf /usr/share/nginx/html/docs/
 
+# Copiar nueva documentación (v2.1 - Nuevas funcionalidades)
+COPY NUEVAS-FUNCIONALIDADES.md /usr/share/nginx/html/docs/
+COPY TEST-CHECKLIST.md /usr/share/nginx/html/docs/
+COPY RESUMEN-IMPLEMENTACION.txt /usr/share/nginx/html/docs/
+COPY demo-funcionalidades.html /usr/share/nginx/html/
+
 # Exponer el puerto 80
 EXPOSE 80
 
