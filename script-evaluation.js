@@ -1,3 +1,17 @@
+// Mapeo de baterías a URLs de TEA Ediciones
+const teaEdicionesUrls = {
+    'WISC-V': 'https://web.teaediciones.com/WISC-V--ESCALA-DE-INTELIGENCIA-DE-WECHSLER-PARA-NINOS-V.aspx',
+    'WISC-IV': 'https://web.teaediciones.com/WISC-IV--ESCALA-DE-INTELIGENCIA-DE-WECHSLER-PARA-NINOS-IV.aspx',
+    'WPPSI-III': 'https://web.teaediciones.com/WPPSI-III--ESCALA-DE-INTELIGENCIA-DE-WECHSLER-PARA-PREESCOLAR-Y-PRIMARIA-III.aspx',
+    'NEPSY-II': 'https://web.teaediciones.com/NEPSY-II--EVALUACION-NEUROPSICOLOGICA-INFANTIL.aspx',
+    'ENFEN': 'https://web.teaediciones.com/ENFEN--EVALUACION-NEUROPSICOLOGICA-DE-LAS-FUNCIONES-EJECUTIVAS-EN-NINOS.aspx',
+    'PROLEC-R': 'https://web.teaediciones.com/PROLEC-R--BATERIA-DE-EVALUACION-DE-LOS-PROCESOS-LECTORES-REVISADA.aspx',
+    'TALE': 'https://web.teaediciones.com/TALE--TEST-DE-ANALISIS-DE-LECTOESCRITURA.aspx',
+    'TEMA-3': 'https://web.teaediciones.com/TEMA-3--TEST-DE-COMPETENCIA-MATEMATICA-BASICA.aspx',
+    'CSAT-R': 'https://web.teaediciones.com/CSAT-R--TAREA-DE-ATENCION-SOSTENIDA-EN-LA-INFANCIA-REVISADA.aspx',
+    'CARAS-R': 'https://web.teaediciones.com/CARAS-R--TEST-DE-PERCEPCION-DE-DIFERENCIAS-REVISADO.aspx'
+};
+
 // Cargar configuración y construir formulario
 document.addEventListener('DOMContentLoaded', () => {
     const config = loadConfiguration();
@@ -81,15 +95,40 @@ function createInputRow(test) {
     const row = document.createElement('div');
     row.className = 'input-row';
     
-    // Label con nombre del test
+    // Label con nombre del test (ahora como enlace si hay URL disponible)
     const label = document.createElement('div');
     label.className = 'test-label';
-    label.textContent = test.name;
     
-    // Badge de batería
+    const url = teaEdicionesUrls[test.battery];
+    if (url) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = test.name;
+        link.className = 'test-link';
+        link.title = `Ver información sobre ${test.battery} en TEA Ediciones`;
+        label.appendChild(link);
+    } else {
+        label.textContent = test.name;
+    }
+    
+    // Badge de batería (también como enlace)
     const batteryTag = document.createElement('div');
     batteryTag.className = 'battery-tag';
-    batteryTag.textContent = test.battery;
+    
+    if (url) {
+        const batteryLink = document.createElement('a');
+        batteryLink.href = url;
+        batteryLink.target = '_blank';
+        batteryLink.rel = 'noopener noreferrer';
+        batteryLink.textContent = test.battery;
+        batteryLink.className = 'battery-link';
+        batteryLink.title = `Ver información sobre ${test.battery} en TEA Ediciones`;
+        batteryTag.appendChild(batteryLink);
+    } else {
+        batteryTag.textContent = test.battery;
+    }
     
     // Input wrapper
     const inputWrapper = document.createElement('div');
