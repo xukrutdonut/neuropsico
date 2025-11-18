@@ -1,15 +1,15 @@
-// Mapeo de baterías a URLs de TEA Ediciones
+// Mapeo de baterías a URLs de Hogrefe TEA Ediciones
 const teaEdicionesUrls = {
-    'WISC-V': 'https://web.teaediciones.com/WISC-V--ESCALA-DE-INTELIGENCIA-DE-WECHSLER-PARA-NINOS-V.aspx',
-    'WISC-IV': 'https://web.teaediciones.com/WISC-IV--ESCALA-DE-INTELIGENCIA-DE-WECHSLER-PARA-NINOS-IV.aspx',
-    'WPPSI-III': 'https://web.teaediciones.com/WPPSI-III--ESCALA-DE-INTELIGENCIA-DE-WECHSLER-PARA-PREESCOLAR-Y-PRIMARIA-III.aspx',
-    'NEPSY-II': 'https://web.teaediciones.com/NEPSY-II--EVALUACION-NEUROPSICOLOGICA-INFANTIL.aspx',
-    'ENFEN': 'https://web.teaediciones.com/ENFEN--EVALUACION-NEUROPSICOLOGICA-DE-LAS-FUNCIONES-EJECUTIVAS-EN-NINOS.aspx',
-    'PROLEC-R': 'https://web.teaediciones.com/PROLEC-R--BATERIA-DE-EVALUACION-DE-LOS-PROCESOS-LECTORES-REVISADA.aspx',
-    'TALE': 'https://web.teaediciones.com/TALE--TEST-DE-ANALISIS-DE-LECTOESCRITURA.aspx',
-    'TEMA-3': 'https://web.teaediciones.com/TEMA-3--TEST-DE-COMPETENCIA-MATEMATICA-BASICA.aspx',
-    'CSAT-R': 'https://web.teaediciones.com/CSAT-R--TAREA-DE-ATENCION-SOSTENIDA-EN-LA-INFANCIA-REVISADA.aspx',
-    'CARAS-R': 'https://web.teaediciones.com/CARAS-R--TEST-DE-PERCEPCION-DE-DIFERENCIAS-REVISADO.aspx'
+    'WISC-V': 'https://www.hogrefe-tea.com/public/producto/wisc-v',
+    'WISC-IV': 'https://www.hogrefe-tea.com/public/producto/wisc-iv',
+    'WPPSI-III': 'https://www.hogrefe-tea.com/public/producto/wppsi-iii',
+    'NEPSY-II': 'https://www.hogrefe-tea.com/public/producto/nepsy-ii',
+    'ENFEN': 'https://www.hogrefe-tea.com/public/producto/enfen',
+    'PROLEC-R': 'https://www.hogrefe-tea.com/public/producto/prolec-r',
+    'TALE': 'https://www.hogrefe-tea.com/public/producto/tale',
+    'TEMA-3': 'https://www.hogrefe-tea.com/public/producto/tema-3',
+    'CSAT-R': 'https://www.hogrefe-tea.com/public/producto/csat-r',
+    'CARAS-R': 'https://www.hogrefe-tea.com/public/producto/caras-r'
 };
 
 // Cargar configuración y construir formulario
