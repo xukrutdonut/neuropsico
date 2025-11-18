@@ -421,34 +421,77 @@ function exportToAscii() {
     ascii += `Generado: ${new Date().toLocaleString('es-ES')}\n`;
     ascii += '═══════════════════════════════════════════════════════════════\n';
     
-    // Copiar al portapapeles
-    navigator.clipboard.writeText(ascii).then(() => {
-        alert('¡Perfil ASCII copiado al portapapeles!\n\nPuedes pegarlo en cualquier documento de texto.');
-    }).catch(err => {
-        // Si falla el clipboard, mostrar en un modal
-        const textarea = document.createElement('textarea');
-        textarea.value = ascii;
-        textarea.style.position = 'fixed';
-        textarea.style.top = '50%';
-        textarea.style.left = '50%';
-        textarea.style.transform = 'translate(-50%, -50%)';
-        textarea.style.width = '80%';
-        textarea.style.height = '80%';
-        textarea.style.zIndex = '10000';
-        textarea.style.fontFamily = 'monospace';
-        textarea.style.fontSize = '12px';
-        textarea.style.padding = '20px';
-        textarea.style.border = '2px solid #333';
-        textarea.style.borderRadius = '8px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        alert('Copia el texto del cuadro que aparecerá a continuación');
-        
-        // Cerrar al hacer click fuera
+    // Método más compatible: usar textarea temporal
+    const textarea = document.createElement('textarea');
+    textarea.value = ascii;
+    textarea.style.position = 'fixed';
+    textarea.style.top = '50%';
+    textarea.style.left = '50%';
+    textarea.style.transform = 'translate(-50%, -50%)';
+    textarea.style.width = '80%';
+    textarea.style.height = '80%';
+    textarea.style.zIndex = '10000';
+    textarea.style.fontFamily = 'monospace';
+    textarea.style.fontSize = '12px';
+    textarea.style.padding = '20px';
+    textarea.style.border = '3px solid #0073aa';
+    textarea.style.borderRadius = '8px';
+    textarea.style.background = 'white';
+    textarea.style.boxShadow = '0 10px 40px rgba(0,0,0,0.3)';
+    textarea.readOnly = true;
+    
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.focus();
+    
+    // Intentar copiar automáticamente
+    try {
+        document.execCommand('copy');
+        alert('¡Perfil ASCII copiado al portapapeles!\n\nEl texto también se muestra abajo por si necesitas copiarlo manualmente.');
+    } catch (err) {
+        alert('Por favor, selecciona todo el texto (Ctrl+A) y cópialo (Ctrl+C)');
+    }
+    
+    // Cerrar al hacer click fuera o presionar ESC
+    const closeTextarea = () => {
+        if (document.body.contains(textarea)) {
+            document.body.removeChild(textarea);
+        }
+    };
+    
+    textarea.addEventListener('blur', () => {
+        setTimeout(closeTextarea, 200);
+    });
+    
+    document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') {
+            closeTextarea();
+            document.removeEventListener('keydown', escHandler);
+        }
+    });
+    
+    // Añadir botón de cerrar
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '✕ Cerrar';
+    closeBtn.style.position = 'fixed';
+    closeBtn.style.top = 'calc(50% - 42%)';
+    closeBtn.style.right = 'calc(50% - 42%)';
+    closeBtn.style.zIndex = '10001';
+    closeBtn.style.padding = '10px 20px';
+    closeBtn.style.background = '#0073aa';
+    closeBtn.style.color = 'white';
+    closeBtn.style.border = 'none';
+    closeBtn.style.borderRadius = '5px';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.style.fontWeight = 'bold';
+    closeBtn.onclick = closeTextarea;
+    document.body.appendChild(closeBtn);
+    
+    textarea.addEventListener('blur', () => {
         setTimeout(() => {
-            textarea.addEventListener('blur', () => {
-                document.body.removeChild(textarea);
-            });
-        }, 100);
+            if (document.body.contains(closeBtn)) {
+                document.body.removeChild(closeBtn);
+            }
+        }, 200);
     });
 }
