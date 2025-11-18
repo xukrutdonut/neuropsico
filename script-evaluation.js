@@ -3,13 +3,13 @@ const teaEdicionesUrls = {
     'WISC-V': 'https://www.pearsonclinical.es/wisc-v-escala-de-inteligencia-de-wechsler-para-ninos-v',
     'WISC-IV': 'https://www.pearsonclinical.es/wisc-iv-escala-de-inteligencia-de-wechsler-para-ninos-iv',
     'WPPSI-III': 'https://www.pearsonclinical.es/wppsi-iii-escala-de-inteligencia-de-wechsler-para-preescolar-y-primaria-iii',
-    'NEPSY-II': 'https://www.hogrefe-tea.com/public/catalogo?search=nepsy',
-    'ENFEN': 'https://www.hogrefe-tea.com/public/catalogo?search=enfen',
-    'PROLEC-R': 'https://www.hogrefe-tea.com/public/catalogo?search=prolec',
-    'TALE': 'https://www.hogrefe-tea.com/public/catalogo?search=tale',
-    'TEMA-3': 'https://www.hogrefe-tea.com/public/catalogo?search=tema-3',
-    'CSAT-R': 'https://www.hogrefe-tea.com/public/catalogo?search=csat',
-    'CARAS-R': 'https://www.hogrefe-tea.com/public/catalogo?search=caras'
+    'NEPSY-II': 'https://www.hogrefe-tea.com/public/catalogo/producto/NEPSY-II--EVALUACION-NEUROPSICOLOGICA-INFANTIL',
+    'ENFEN': 'https://www.hogrefe-tea.com/public/catalogo/producto/ENFEN--EVALUACION-NEUROPSICOLOGICA-DE-LAS-FUNCIONES-EJECUTIVAS-EN-NINOS',
+    'PROLEC-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/PROLEC-R--BATERIA-DE-EVALUACION-DE-LOS-PROCESOS-LECTORES-REVISADA',
+    'TALE': 'https://www.hogrefe-tea.com/public/catalogo/producto/TALE--TEST-DE-ANALISIS-DE-LECTOESCRITURA',
+    'TEMA-3': 'https://www.hogrefe-tea.com/public/catalogo/producto/TEMA-3--TEST-DE-COMPETENCIA-MATEMATICA-BASICA-3',
+    'CSAT-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/CSAT--TAREA-DE-ATENCION-SOSTENIDA-EN-LA-INFANCIA',
+    'CARAS-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/CARAS-R--TEST-DE-PERCEPCION-DE-DIFERENCIAS-R'
 };
 
 // Cargar configuración y construir formulario
