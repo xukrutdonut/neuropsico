@@ -203,15 +203,15 @@ header h1 {
 .input-wrapper input {
     width: 100%;
     max-width: none;
-    padding: 12px 20px;
+    padding: 10px 16px;
     border: 2px solid #e2e8f0;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.125rem;
+    font-weight: 600;
     transition: all 0.2s ease;
-    min-height: 54px;
+    min-height: 46px;
     font-family: 'Courier New', 'Consolas', monospace;
     text-align: center;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.08em;
     box-sizing: border-box;
 }
 
