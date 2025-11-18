@@ -102,7 +102,7 @@ function createInputRow(test) {
     input.dataset.domain = test.domain;
     input.dataset.scale = test.scale;
     input.dataset.chc = test.chc;
-    input.placeholder = getScalePlaceholder(test.scale);
+    // Eliminar placeholder - es redundante
     
     // Configurar min, max y step según la escala
     const scaleConfig = getScaleConfig(test.scale);

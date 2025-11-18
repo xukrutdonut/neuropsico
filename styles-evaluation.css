@@ -164,7 +164,7 @@ header h1 {
 
 .input-row {
     display: grid;
-    grid-template-columns: 2.5fr 1fr 180px;
+    grid-template-columns: 3fr 0.8fr 180px;
     gap: 20px;
     align-items: center;
     padding: 15px;
