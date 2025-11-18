@@ -5,11 +5,11 @@ const teaEdicionesUrls = {
     'WPPSI-III': 'https://www.pearsonclinical.es/wppsi-iii-escala-de-inteligencia-de-wechsler-para-preescolar-y-primaria-iii',
     'NEPSY-II': 'https://www.hogrefe-tea.com/public/catalogo/producto/NEPSY-II--EVALUACION-NEUROPSICOLOGICA-INFANTIL',
     'ENFEN': 'https://www.hogrefe-tea.com/public/catalogo/producto/ENFEN--EVALUACION-NEUROPSICOLOGICA-DE-LAS-FUNCIONES-EJECUTIVAS-EN-NINOS',
-    'PROLEC-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/PROLEC-R--BATERIA-DE-EVALUACION-DE-LOS-PROCESOS-LECTORES-REVISADA',
+    'PROLEC-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/PROLEC-R-Bateria-de-Evaluacion-de-los-Procesos-Lectores--Revisad',
     'TALE': 'https://www.hogrefe-tea.com/public/catalogo/producto/TALE--TEST-DE-ANALISIS-DE-LECTOESCRITURA',
-    'TEMA-3': 'https://www.hogrefe-tea.com/public/catalogo/producto/TEMA-3--TEST-DE-COMPETENCIA-MATEMATICA-BASICA-3',
+    'TEMA-3': 'https://www.hogrefe-tea.com/public/catalogo/producto/tema-3-test-de-competencia-matematica-basica-3',
     'CSAT-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/CSAT--TAREA-DE-ATENCION-SOSTENIDA-EN-LA-INFANCIA',
-    'CARAS-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/CARAS-R--TEST-DE-PERCEPCION-DE-DIFERENCIAS-R'
+    'CARAS-R': 'https://www.hogrefe-tea.com/public/catalogo/producto/CARAS-R-Test-de-Percepcion-de-Diferencias---Revisado'
 };
 
 // Cargar configuración y construir formulario
