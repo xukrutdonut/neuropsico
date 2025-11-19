@@ -173,7 +173,9 @@ function getChcName(chcCode) {
         'gs': 'Velocidad de Procesamiento (Gs)',
         'ga': 'Procesamiento Auditivo y Atención (Ga)',
         'grw': 'Lectura y Escritura (Grw)',
-        'gq': 'Conocimiento Cuantitativo (Gq)'
+        'gq': 'Conocimiento Cuantitativo (Gq)',
+        'gps': 'Psicomotricidad (Gps)',
+        'se': 'Socioemocional (SE)'
     };
     return chcNames[chcCode] || chcCode;
 }
@@ -185,8 +187,11 @@ function getScaleName(scaleCode) {
         'scalar': 'Escalar',
         'decatipo': 'Decatipo',
         'percentile': 'Percentil',
+        'percentil': 'Percentil',
         'pd': 'PD',
-        'z': 'z-score'
+        'z': 'z-score',
+        'normalizada': 'Normalizada',
+        'corte': 'Punto de Corte'
     };
     return scaleNames[scaleCode] || scaleCode;
 }
