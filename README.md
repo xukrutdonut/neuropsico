@@ -7,13 +7,14 @@ Aplicación web profesional para evaluación neuropsicológica con **configuraci
 ### Versión 2.0 - Configuración Personalizada ⭐ NUEVA Y RECOMENDADA
 - **Drag & Drop**: Personaliza tu batería de tests arrastrando elementos
 - **Organización dual**: 
-  - Biblioteca por batería comercial (WISC-V, ENFEN, etc.)
-  - Formulario por dominios CHC (Gc, Gf, Gv, Gwm, Gs, etc.)
+  - Biblioteca por batería comercial (WISC-V, WAIS-IV, TAVECI, SENA, etc.)
+  - Formulario por dominios CHC (g, Gc, Gf, Gv, Gwm, Gs, Ga, Grw, Gq, Gps, SE)
 - **Flujo de 2 páginas**:
   1. Configuración de tests (config.html)
   2. Evaluación y perfil (evaluation.html)
 - **Formulario dinámico**: Solo los tests que necesitas
-- **50 tests disponibles** de 8 baterías diferentes
+- **28 baterías completas** con 100+ tests disponibles
+- **Búsqueda y filtrado**: Por nombre, batería y edad
 - **Persistencia automática**: Datos guardados en el navegador
 - 📖 **[Ver Guía de Uso Completa](GUIA-USO.md)**
 
@@ -36,16 +37,21 @@ Aplicación web profesional para evaluación neuropsicológica con **configuraci
 ## Características Principales
 
 - **Estructura basada en tests neuropsicológicos reales**: 
-  - WISC-V (Inteligencia) - 21 entradas completas
-  - CSAT-R, CARAS-R (Atención)
-  - ENFEN (Funciones Ejecutivas) - 6 subtests
-  - NEPSY-II (Lenguaje) - 3 subtests
-  - PROLEC-R (Lectura) - 9 procesos
-  - TALE (Escritura) - 2 medidas
-  - TEMA-3 (Matemáticas) - 2 medidas
+  - **Inteligencia**: WISC-V, WISC-IV, WAIS-IV, WPPSI-III, TONI-2, MSCA
+  - **Memoria**: Figura de Rey, TAVECI, TAVEC
+  - **Atención**: CSAT-R, CARAS-R, D2
+  - **Funciones Ejecutivas**: ENFEN, BANFE, BRIEF
+  - **Lenguaje**: NEPSY-II, Peabody, CELF-5, PLON-R
+  - **Lectura**: PROLEC-R, TALE
+  - **Escritura**: PROESC
+  - **Matemáticas**: TEMA-3, EVAMAT
+  - **Motor**: MABC
+  - **Socioemocional**: SENA
+  - **Autismo**: ADOS-2, ADI-R
 
-- **Puntuaciones estandarizadas reales**: CI, T, Escalar, Decatipo, V, z-scores, Percentil
+- **Puntuaciones estandarizadas reales**: CI, T, Escalar, Decatipo, Percentil, z-scores, Normalizada, Puntos de Corte
 - **Conversión automática a z-scores**: Métrica común para comparación
+- **11 dominios CHC**: g, Gc, Gf, Gv, Gwm, Gs, Ga, Grw, Gq, Gps (Psicomotricidad), SE (Socioemocional)
 - **Fundamentación teórica sólida**: Basado en 100+ años de investigación CHC
 - **Gráficos profesionales**: Visualización clara y precisa
 - **Exportación PDF**: Función de impresión integrada
